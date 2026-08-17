@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  min-height: 100%;
+}
+
+.active-nav {
+  background-color: rgb(40 55 121 / 0.08);
+  color: #283779;
+}
+
+.active-nav span {
+  color: #283779;
+}

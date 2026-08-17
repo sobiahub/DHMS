@@ -1,0 +1,1025 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-[#F8FAFC]">
+
+  <!-- ========================================================= -->
+  <!-- HERO -->
+  <!-- ========================================================= -->
+
+  <section class="relative overflow-hidden bg-slate-950">
+
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="/assets/images/landing-page/doctors.jpg"
+        alt="Medical specialists"
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+
+ <!-- Light overlay -->
+<div class="absolute inset-0 bg-white/20"></div>
+
+<div
+  class="absolute inset-0 bg-gradient-to-r from-white/75 via-white/30 to-transparent"
+></div>
+
+    <!-- Subtle bottom fade -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8FAFC] to-transparent"
+    ></div>
+
+
+    <!-- Hero Content -->
+    <div
+      class="relative mx-auto w-full max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32 lg:px-10 lg:pb-28 lg:pt-36"
+    >
+
+      <!-- Breadcrumb -->
+      <div
+        class="mb-8 flex items-center gap-2 text-xs font-medium text-slate-500 sm:text-sm"
+      >
+
+        <a
+          routerLink="/"
+          class="transition-colors hover:text-[#283779]"
+        >
+          Home
+        </a>
+
+        <i class="bi bi-chevron-right text-[9px] text-slate-400"></i>
+
+        <span class="font-semibold text-[#283779]">
+          Doctors
+        </span>
+
+      </div>
+
+
+      <!-- Hero Layout -->
+      <div
+        class="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16"
+      >
+
+        <!-- Content -->
+        <div class="max-w-3xl">
+
+          <!-- Badge -->
+          <div
+            class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#283779]/10 bg-white/90 px-4 py-2 shadow-sm backdrop-blur-md"
+          >
+
+            <span
+              class="h-2 w-2 rounded-full bg-[#283779] shadow-[0_0_0_4px_rgba(40,55,121,0.08)]"
+            ></span>
+
+            <span
+              class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#283779] sm:text-[11px]"
+            >
+              Our Medical Specialists
+            </span>
+
+          </div>
+
+
+          <!-- Heading -->
+          <h1
+            class="max-w-3xl text-4xl font-bold leading-[1.05] tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl xl:text-[68px]"
+          >
+            Find the right
+            <span class="text-[#283779]">
+              doctor.
+            </span>
+          </h1>
+
+
+          <!-- Description -->
+          <p
+            class="mt-6 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 lg:text-lg"
+          >
+            Browse trusted healthcare professionals by specialty,
+            availability, and experience. Find the right specialist
+            for your healthcare needs and book your visit with confidence.
+          </p>
+
+
+          <!-- Trust Indicators -->
+          <div
+            class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
+          >
+
+            <div class="flex items-center gap-2">
+
+              <span
+                class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F1F3FA] text-[#283779]"
+              >
+                <i class="bi bi-patch-check-fill text-sm"></i>
+              </span>
+
+              <span class="text-xs font-semibold text-slate-600 sm:text-sm">
+                Verified Specialists
+              </span>
+
+            </div>
+
+
+            <div class="hidden h-5 w-px bg-slate-200 sm:block"></div>
+
+
+            <div class="flex items-center gap-2">
+
+              <span
+                class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#EEF7F3] text-[#277557]"
+              >
+                <i class="bi bi-shield-check text-sm"></i>
+              </span>
+
+              <span class="text-xs font-semibold text-slate-600 sm:text-sm">
+                Secure Healthcare
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Stats -->
+        <div
+          class="grid w-full grid-cols-2 gap-3 sm:max-w-sm lg:w-auto lg:min-w-[310px]"
+        >
+
+          <!-- Specialists -->
+          <div
+            class="rounded-2xl border border-white/80 bg-white/90 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-6"
+          >
+
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F1F3FA] text-[#283779]"
+            >
+              <i class="bi bi-person-badge text-lg"></i>
+            </div>
+
+            <p
+              class="mt-4 text-2xl font-bold tracking-tight text-[#283779] sm:text-3xl"
+            >
+              {{ doctors.length }}+
+            </p>
+
+            <p class="mt-1 text-xs font-medium text-slate-500 sm:text-sm">
+              Specialists
+            </p>
+
+          </div>
+
+
+          <!-- Available -->
+          <div
+            class="rounded-2xl border border-white/80 bg-white/90 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-6"
+          >
+
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EEF7F3] text-[#277557]"
+            >
+              <i class="bi bi-calendar2-check text-lg"></i>
+            </div>
+
+            <p
+              class="mt-4 text-2xl font-bold tracking-tight text-[#277557] sm:text-3xl"
+            >
+              {{ availableDoctorsCount() }}
+            </p>
+
+            <p class="mt-1 text-xs font-medium text-slate-500 sm:text-sm">
+              Available
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- FILTERS -->
+  <!-- NON-STICKY / STATIC -->
+  <!-- ========================================================= -->
+
+  <section
+    class="border-b border-slate-200 bg-white"
+  >
+
+    <div
+      class="mx-auto w-full max-w-7xl px-5 py-5 sm:px-8 lg:px-10"
+    >
+
+      <!-- Search -->
+      <div class="relative">
+
+        <i
+          class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-sm text-slate-400"
+        ></i>
+
+        <input
+          type="text"
+          [value]="searchTerm()"
+          (input)="updateSearch($event)"
+          placeholder="Search doctors, specialties or departments..."
+          class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-[#283779]/30 focus:bg-white focus:ring-4 focus:ring-[#283779]/5"
+        />
+
+      </div>
+
+
+      <!-- Filters -->
+      <div
+        class="mt-4 flex flex-col gap-4"
+      >
+
+        <!-- Specialties -->
+        <div class="flex flex-col gap-2.5">
+
+          <span
+            class="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400"
+          >
+            Specialty
+          </span>
+
+          <div class="flex flex-wrap gap-2">
+
+            @for (
+              specialty of specialties;
+              track specialty
+            ) {
+
+              <button
+                type="button"
+                (click)="selectSpecialty(specialty)"
+                class="rounded-lg border px-3.5 py-2 text-xs font-semibold transition-all duration-200"
+                [class.border-[#283779]]="selectedSpecialty() === specialty"
+                [class.bg-[#283779]]="selectedSpecialty() === specialty"
+                [class.text-white]="selectedSpecialty() === specialty"
+                [class.border-slate-200]="selectedSpecialty() !== specialty"
+                [class.bg-white]="selectedSpecialty() !== specialty"
+                [class.text-slate-600]="selectedSpecialty() !== specialty"
+                [class.hover:border-[#283779]/30]="selectedSpecialty() !== specialty"
+                [class.hover:text-[#283779]]="selectedSpecialty() !== specialty"
+              >
+                {{ specialty }}
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- Availability -->
+        <div class="flex flex-col gap-2.5">
+
+          <span
+            class="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400"
+          >
+            Availability
+          </span>
+
+          <div class="flex flex-wrap gap-2">
+
+            @for (
+              option of availabilityOptions;
+              track option
+            ) {
+
+              <button
+                type="button"
+                (click)="selectAvailability(option)"
+                class="rounded-lg border px-3.5 py-2 text-xs font-semibold transition-all duration-200"
+                [class.border-[#277557]]="selectedAvailability() === option"
+                [class.bg-[#EEF7F3]]="selectedAvailability() === option"
+                [class.text-[#277557]]="selectedAvailability() === option"
+                [class.border-slate-200]="selectedAvailability() !== option"
+                [class.bg-white]="selectedAvailability() !== option"
+                [class.text-slate-600]="selectedAvailability() !== option"
+                [class.hover:border-[#277557]/30]="selectedAvailability() !== option"
+                [class.hover:text-[#277557]]="selectedAvailability() !== option"
+              >
+                {{ option }}
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DOCTORS -->
+  <!-- ========================================================= -->
+
+  <main
+    class="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20"
+  >
+
+    <!-- Results Header -->
+    <div
+      class="mb-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+    >
+
+      <div>
+
+        <p class="text-sm text-slate-500">
+
+          Showing
+
+          <span class="font-bold text-slate-900">
+            {{ filteredDoctors().length }}
+          </span>
+
+          doctors
+
+        </p>
+
+        <p class="mt-1 text-xs text-slate-400">
+          Browse our healthcare specialists
+        </p>
+
+      </div>
+
+
+      @if (
+        searchTerm() ||
+        selectedSpecialty() !== 'All Specialties' ||
+        selectedAvailability() !== 'All'
+      ) {
+
+        <button
+          type="button"
+          (click)="clearFilters()"
+          class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-[#283779] transition hover:text-[#202D61]"
+        >
+
+          <i class="bi bi-arrow-counterclockwise"></i>
+
+          Clear filters
+
+        </button>
+
+      }
+
+    </div>
+
+
+    <!-- Doctor Grid -->
+
+    @if (filteredDoctors().length > 0) {
+
+      <div
+        class="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3"
+      >
+
+        @for (
+          doctor of filteredDoctors();
+          track doctor.id
+        ) {
+
+          <article
+            class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_4px_20px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-[#283779]/15 hover:shadow-[0_20px_50px_rgba(15,23,42,0.10)]"
+          >
+
+            <!-- Doctor Image -->
+            <div
+              class="relative h-64 overflow-hidden bg-[#F1F3FA] sm:h-72"
+            >
+
+              <img
+                [src]="doctor.image"
+                [alt]="doctor.name"
+                class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+
+
+              <!-- Image Gradient -->
+              <div
+                class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/15 to-transparent"
+              ></div>
+
+
+              <!-- Availability -->
+              <div
+                class="absolute left-4 top-4"
+              >
+
+                @if (
+                  doctor.availability === 'Available Today'
+                ) {
+
+                  <span
+                    class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[10px] font-bold text-[#277557] shadow-md backdrop-blur-md sm:text-[11px]"
+                  >
+
+                    <span
+                      class="h-2 w-2 rounded-full bg-[#277557]"
+                    ></span>
+
+                    Available Today
+
+                  </span>
+
+                } @else if (
+                  doctor.availability === 'Available Tomorrow'
+                ) {
+
+                  <span
+                    class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[10px] font-bold text-[#A96D19] shadow-md backdrop-blur-md sm:text-[11px]"
+                  >
+
+                    <span
+                      class="h-2 w-2 rounded-full bg-[#A96D19]"
+                    ></span>
+
+                    Available Tomorrow
+
+                  </span>
+
+                } @else {
+
+                  <span
+                    class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[10px] font-bold text-slate-500 shadow-md backdrop-blur-md sm:text-[11px]"
+                  >
+
+                    <span
+                      class="h-2 w-2 rounded-full bg-slate-400"
+                    ></span>
+
+                    Unavailable
+
+                  </span>
+
+                }
+
+              </div>
+
+            </div>
+
+
+            <!-- Card Content -->
+            <div
+              class="flex flex-1 flex-col p-5 sm:p-6"
+            >
+
+              <!-- Name -->
+              <h2
+                class="text-lg font-bold tracking-tight text-slate-900 sm:text-xl"
+              >
+                {{ doctor.name }}
+              </h2>
+
+
+              <!-- Specialty -->
+              <p
+                class="mt-1 text-sm font-semibold text-[#283779]"
+              >
+                {{ doctor.specialty }}
+              </p>
+
+
+              <!-- Qualification -->
+              <p
+                class="mt-2 text-xs leading-5 text-slate-500"
+              >
+                {{ doctor.qualification }}
+              </p>
+
+
+              <!-- Stats -->
+              <div
+                class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2"
+              >
+
+                <div class="flex items-center gap-1.5">
+
+                  <i
+                    class="bi bi-star-fill text-sm text-amber-400"
+                  ></i>
+
+                  <span
+                    class="text-sm font-bold text-slate-800"
+                  >
+                    {{ doctor.rating }}
+                  </span>
+
+                  <span class="text-xs text-slate-400">
+                    ({{ doctor.reviews }})
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="hidden h-4 w-px bg-slate-200 sm:block"
+                ></div>
+
+
+                <span
+                  class="text-xs font-medium text-slate-500"
+                >
+                  {{ doctor.experience }} years exp.
+                </span>
+
+              </div>
+
+
+              <!-- Availability -->
+              <div
+                class="mt-5 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
+              >
+
+                <div
+                  class="flex items-center justify-between gap-3"
+                >
+
+                  <div class="flex items-center gap-2">
+
+                    <i
+                      class="bi bi-calendar-check text-xs text-[#277557]"
+                    ></i>
+
+                    <span
+                      class="text-xs font-medium text-slate-500"
+                    >
+                      Next available
+                    </span>
+
+                  </div>
+
+                  <span
+                    class="text-right text-xs font-bold text-slate-700"
+                  >
+                    {{ doctor.nextAvailable }}
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- Actions -->
+              <div
+                class="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+              >
+
+                <button
+                  type="button"
+                  (click)="openDoctor(doctor)"
+                  class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-xs font-semibold text-slate-700 transition-all hover:border-[#283779]/20 hover:bg-[#F1F3FA] hover:text-[#283779] sm:text-sm"
+                >
+
+                  <i class="bi bi-person"></i>
+
+                  View Profile
+
+                </button>
+
+
+                @if (
+                  doctor.availability !== 'Unavailable'
+                ) {
+
+                  <a
+                    routerLink="/auth/appointments"
+                    [queryParams]="{ doctor: doctor.id }"
+                    class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#283779] text-xs font-semibold text-white transition-all hover:bg-[#202D61] hover:shadow-lg sm:text-sm"
+                  >
+
+                    <i class="bi bi-calendar2-plus"></i>
+
+                    Book
+
+                  </a>
+
+                } @else {
+
+                  <button
+                    type="button"
+                    disabled
+                    class="inline-flex h-11 w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-slate-100 text-xs font-semibold text-slate-400 sm:text-sm"
+                  >
+
+                    Unavailable
+
+                  </button>
+
+                }
+
+              </div>
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <!-- Empty State -->
+
+      <div
+        class="rounded-3xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center sm:py-20"
+      >
+
+        <div
+          class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F1F3FA] text-2xl text-[#283779]"
+        >
+          <i class="bi bi-person-x"></i>
+        </div>
+
+        <h2
+          class="mt-6 text-xl font-bold text-slate-900"
+        >
+          No doctors found
+        </h2>
+
+        <p
+          class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500"
+        >
+          Try searching for another doctor, specialty,
+          or availability option.
+        </p>
+
+        <button
+          type="button"
+          (click)="clearFilters()"
+          class="mt-6 rounded-xl bg-[#283779] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#202D61]"
+        >
+          View all doctors
+        </button>
+
+      </div>
+
+    }
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- CTA -->
+  <!-- ========================================================= -->
+
+ <section class="w-full bg-white">
+  <div
+    class="mx-auto flex min-h-[55vh] max-w-3xl flex-col items-center justify-center px-5 py-16 text-center sm:px-8"
+  >
+
+    <!-- Small label -->
+    <span
+      class="text-[10px] font-bold uppercase tracking-[0.16em] text-[#283779]"
+    >
+      Your Health Matters
+    </span>
+
+    <!-- Heading -->
+    <h2
+      class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl"
+    >
+      Ready to find the right doctor?
+    </h2>
+
+    <!-- Description -->
+    <p
+      class="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500 sm:text-base sm:leading-7"
+    >
+      Browse our specialists, choose a doctor that fits your needs,
+      and book your appointment with ease.
+    </p>
+
+    <!-- Button -->
+    <a
+      routerLink="/auth/appointments"
+      class="mt-7 inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#283779] px-6 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#202D61] hover:shadow-xl"
+    >
+      Book an Appointment
+
+      <i class="bi bi-arrow-up-right text-xs"></i>
+    </a>
+
+  </div>
+</section>
+
+
+  <!-- ========================================================= -->
+  <!-- DOCTOR DETAILS MODAL -->
+  <!-- ========================================================= -->
+
+  @if (selectedDoctor(); as doctor) {
+
+    <div
+      class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/50 px-4 py-5 backdrop-blur-sm sm:px-5 sm:py-8"
+      (click)="closeDoctor()"
+    >
+
+      <div
+        class="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white shadow-2xl"
+        (click)="$event.stopPropagation()"
+      >
+
+        <!-- Header -->
+        <div
+          class="relative border-b border-slate-100 p-6 sm:p-8"
+        >
+
+          <button
+            type="button"
+            (click)="closeDoctor()"
+            class="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900 sm:right-6 sm:top-6"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+
+
+          <div
+            class="flex flex-col gap-5 pr-10 sm:flex-row sm:items-center sm:gap-6"
+          >
+
+            <!-- Image -->
+            <div
+              class="h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-[#F1F3FA] sm:h-28 sm:w-28"
+            >
+
+              <img
+                [src]="doctor.image"
+                [alt]="doctor.name"
+                class="h-full w-full object-cover object-top"
+              />
+
+            </div>
+
+
+            <!-- Info -->
+            <div>
+
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-[#283779]"
+              >
+                {{ doctor.department }}
+              </span>
+
+              <h2
+                class="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl"
+              >
+                {{ doctor.name }}
+              </h2>
+
+              <p
+                class="mt-1 text-sm font-semibold text-[#283779]"
+              >
+                {{ doctor.specialty }}
+              </p>
+
+              <p
+                class="mt-2 text-sm text-slate-500"
+              >
+                {{ doctor.qualification }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Body -->
+        <div
+          class="grid gap-7 p-6 sm:p-8 lg:grid-cols-[1fr_280px]"
+        >
+
+          <!-- About -->
+          <div>
+
+            <h3
+              class="text-lg font-bold text-slate-900"
+            >
+              About the doctor
+            </h3>
+
+            <p
+              class="mt-3 text-sm leading-7 text-slate-600"
+            >
+              {{ doctor.about }}
+            </p>
+
+
+            <!-- Experience -->
+            <div
+              class="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3"
+            >
+
+              <div
+                class="rounded-xl bg-slate-50 p-4"
+              >
+
+                <p
+                  class="text-xl font-bold text-[#283779]"
+                >
+                  {{ doctor.experience }}+
+                </p>
+
+                <p
+                  class="mt-1 text-xs text-slate-500"
+                >
+                  Years Experience
+                </p>
+
+              </div>
+
+
+              <div
+                class="rounded-xl bg-slate-50 p-4"
+              >
+
+                <p
+                  class="flex items-center gap-1 text-xl font-bold text-slate-900"
+                >
+
+                  {{ doctor.rating }}
+
+                  <i
+                    class="bi bi-star-fill text-sm text-amber-400"
+                  ></i>
+
+                </p>
+
+                <p
+                  class="mt-1 text-xs text-slate-500"
+                >
+                  Patient Rating
+                </p>
+
+              </div>
+
+
+              <div
+                class="rounded-xl bg-slate-50 p-4"
+              >
+
+                <p
+                  class="text-xl font-bold text-[#283779]"
+                >
+                  {{ doctor.reviews }}+
+                </p>
+
+                <p
+                  class="mt-1 text-xs text-slate-500"
+                >
+                  Reviews
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Languages -->
+            <div class="mt-7">
+
+              <h3
+                class="text-sm font-bold text-slate-900"
+              >
+                Languages
+              </h3>
+
+              <div
+                class="mt-3 flex flex-wrap gap-2"
+              >
+
+                @for (
+                  language of doctor.languages;
+                  track language
+                ) {
+
+                  <span
+                    class="rounded-full bg-[#F1F3FA] px-3 py-1.5 text-xs font-medium text-[#283779]"
+                  >
+                    {{ language }}
+                  </span>
+
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Appointment Card -->
+          <div>
+
+            <div
+              class="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+            >
+
+              <p
+                class="text-xs font-bold uppercase tracking-wider text-slate-400"
+              >
+                Consultation
+              </p>
+
+              <p
+                class="mt-2 text-2xl font-bold text-slate-900"
+              >
+                PKR {{ doctor.consultationFee }}
+              </p>
+
+
+              <div
+                class="mt-5 rounded-xl bg-white p-4"
+              >
+
+                <div
+                  class="flex items-center gap-2"
+                >
+
+                  <i
+                    class="bi bi-calendar-check text-[#277557]"
+                  ></i>
+
+                  <span
+                    class="text-xs font-semibold text-slate-700"
+                  >
+                    Next available
+                  </span>
+
+                </div>
+
+                <p
+                  class="mt-2 text-sm font-bold text-slate-900"
+                >
+                  {{ doctor.nextAvailable }}
+                </p>
+
+              </div>
+
+
+              @if (
+                doctor.availability !== 'Unavailable'
+              ) {
+
+                <a
+                  routerLink="/auth/appointments"
+                  [queryParams]="{ doctor: doctor.id }"
+                  (click)="closeDoctor()"
+                  class="mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#283779] text-sm font-semibold text-white transition hover:bg-[#202D61]"
+                >
+
+                  <i class="bi bi-calendar2-plus"></i>
+
+                  Book Appointment
+
+                </a>
+
+              } @else {
+
+                <button
+                  type="button"
+                  disabled
+                  class="mt-4 h-12 w-full cursor-not-allowed rounded-xl bg-slate-200 text-sm font-semibold text-slate-400"
+                >
+                  Currently Unavailable
+                </button>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>
+
+
+
+<app-footer></app-footer>

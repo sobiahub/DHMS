@@ -1,0 +1,994 @@
+<nav
+  class="fixed left-2 right-2 top-3 z-50 sm:left-4 sm:right-4 lg:left-8 lg:right-8"
+>
+  <div
+    class="mx-auto max-w-[1400px] rounded-[1.5rem] border border-slate-200/80 bg-white/95 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[2rem]"
+  >
+
+    <!-- ================================================= -->
+    <!-- NAVBAR TOP -->
+    <!-- ================================================= -->
+
+    <div
+      class="flex h-[64px] w-full items-center justify-between px-4 sm:h-[70px] sm:px-6 lg:h-[72px] lg:px-8"
+    >
+
+      <!-- ================================================= -->
+      <!-- LOGO -->
+      <!-- ================================================= -->
+
+      <a
+        routerLink="/"
+        (click)="closeMenu()"
+        class="flex shrink-0 items-center gap-2.5 sm:gap-3"
+      >
+
+        <div
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#283779] text-white shadow-sm transition-all duration-300 hover:bg-[#202D61] sm:h-10 sm:w-10"
+        >
+          <i
+            class="bi bi-heart-pulse-fill text-[16px] sm:text-[18px]"
+          ></i>
+        </div>
+
+
+        <div class="hidden min-[400px]:block">
+
+          <div
+            class="text-[15px] font-bold leading-none tracking-tight text-slate-900 sm:text-[17px]"
+          >
+            MediCare
+          </div>
+
+          <div
+            class="mt-1 text-[7px] font-semibold uppercase tracking-[0.15em] text-slate-400 sm:text-[8px]"
+          >
+            Digital Healthcare
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- ================================================= -->
+      <!-- DESKTOP NAVIGATION -->
+      <!-- ================================================= -->
+
+      <div
+        class="hidden flex-1 items-center justify-center lg:flex"
+      >
+
+        <div class="flex items-center gap-1">
+
+          <!-- HOME -->
+          <a
+            routerLink="/"
+            routerLinkActive="text-[#283779]"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            Home
+
+            <span
+              routerLinkActive="opacity-100"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+
+          <!-- DOCTORS -->
+          <a
+            routerLink="/doctors"
+            routerLinkActive="text-[#283779]"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            Doctors
+
+            <span
+              routerLinkActive="opacity-100"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+
+          <!-- DEPARTMENTS -->
+          <a
+            routerLink="/departments"
+            routerLinkActive="text-[#283779]"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            Departments
+
+            <span
+              routerLinkActive="opacity-100"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+
+          <!-- SERVICES -->
+          <a
+            routerLink="/services"
+            routerLinkActive="text-[#283779]"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            Services
+
+            <span
+              routerLinkActive="opacity-100"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+
+          <!-- ABOUT -->
+          <a
+            routerLink="/about"
+            routerLinkActive="text-[#283779]"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            About
+
+            <span
+              routerLinkActive="opacity-100"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+
+          <!-- CONTACT -->
+          <a
+            routerLink="/contact"
+            routerLinkActive="text-[#283779]"
+            class="relative px-3 py-2 text-[13px] font-semibold text-slate-600 transition-colors duration-200 hover:text-[#283779]"
+          >
+            Contact
+
+            <span
+              routerLinkActive="opacity-100"
+              class="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#283779] opacity-0 transition-opacity duration-200"
+            ></span>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- DESKTOP ACTIONS -->
+      <!-- ================================================= -->
+
+      <div
+        class="hidden items-center gap-3 lg:flex"
+      >
+
+        <!-- SEARCH -->
+
+        <div
+          class="flex h-10 w-[210px] items-center gap-2.5 rounded-full border border-slate-200 bg-slate-50/70 px-4 transition-all duration-200 focus-within:border-[#283779]/30 focus-within:bg-white focus-within:ring-4 focus-within:ring-[#283779]/5"
+        >
+
+          <i
+            class="bi bi-search text-[15px] text-slate-500"
+          ></i>
+
+          <input
+            type="search"
+            placeholder="Search doctors..."
+            class="min-w-0 flex-1 bg-transparent text-[12px] text-slate-700 outline-none placeholder:text-slate-400"
+          />
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <button
+          type="button"
+          class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-600 transition-all duration-200 hover:bg-[#F1F3FA] hover:text-[#283779]"
+          aria-label="Notifications"
+        >
+
+          <i
+            class="bi bi-bell text-[18px]"
+          ></i>
+
+          <span
+            class="absolute right-1 top-0.5 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold text-white ring-2 ring-white"
+          >
+            1
+          </span>
+
+        </button>
+
+
+        <!-- ================================================= -->
+        <!-- ACCOUNT -->
+        <!-- ================================================= -->
+
+        <div
+          class="relative"
+          (mouseenter)="openAccountMenu()"
+          (mouseleave)="closeAccountMenu()"
+        >
+
+          <button
+            type="button"
+            (click)="toggleAccountMenu()"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-600 transition-all duration-200 hover:bg-[#F1F3FA] hover:text-[#283779]"
+            [attr.aria-expanded]="isAccountMenuOpen"
+            aria-label="Account menu"
+          >
+
+            <!-- Logged out icon -->
+
+            <i
+              *ngIf="!isLoggedIn"
+              class="bi bi-person text-[19px]"
+            ></i>
+
+
+            <!-- Logged in initials -->
+
+            <span
+              *ngIf="isLoggedIn"
+              class="text-[12px] font-bold text-[#283779]"
+            >
+              {{ userInitials }}
+            </span>
+
+          </button>
+
+
+          <!-- ================================================= -->
+          <!-- ACCOUNT DROPDOWN -->
+          <!-- ================================================= -->
+
+          <div
+            *ngIf="isAccountMenuOpen"
+            class="absolute right-0 top-full z-[100] w-72 pt-2"
+          >
+
+            <div
+              class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-2 shadow-[0_20px_50px_rgba(15,23,42,0.14)]"
+            >
+
+              <!-- ================================================= -->
+              <!-- LOGGED IN HEADER -->
+              <!-- ================================================= -->
+
+              <ng-container *ngIf="isLoggedIn; else loggedOutHeader">
+
+                <div class="px-3 pb-3 pt-2">
+
+                  <div
+                    class="flex items-center gap-3"
+                  >
+
+                    <div
+                      class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F1F3FA] text-[13px] font-bold text-[#283779]"
+                    >
+                      {{ userInitials }}
+                    </div>
+
+
+                    <div
+                      class="min-w-0 flex-1"
+                    >
+
+                      <p
+                        class="truncate text-[13px] font-bold text-slate-900"
+                      >
+                        {{ fullName }}
+                      </p>
+
+                      <p
+                        class="mt-0.5 truncate text-[10px] text-slate-400"
+                      >
+                        {{ currentUser?.email }}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </ng-container>
+
+
+              <!-- ================================================= -->
+              <!-- LOGGED OUT HEADER -->
+              <!-- ================================================= -->
+
+              <ng-template #loggedOutHeader>
+
+                <div class="px-3 pb-3 pt-2">
+
+                  <div
+                    class="flex items-center gap-3"
+                  >
+
+                    <div
+                      class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F1F3FA] text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-person text-lg"
+                      ></i>
+                    </div>
+
+
+                    <div>
+
+                      <p
+                        class="text-[13px] font-bold text-slate-900"
+                      >
+                        My Account
+                      </p>
+
+                      <p
+                        class="mt-0.5 text-[10px] text-slate-400"
+                      >
+                        Manage your healthcare account
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </ng-template>
+
+
+              <div
+                class="border-t border-slate-100"
+              ></div>
+
+
+              <!-- ================================================= -->
+              <!-- LOGGED IN LINKS -->
+              <!-- ================================================= -->
+
+              <ng-container *ngIf="isLoggedIn">
+
+                <div class="py-1">
+
+                  <!-- PROFILE -->
+
+                  <a
+                    routerLink="/auth/profile"
+                    (click)="closeAccountMenu()"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                  >
+
+                    <span
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-person-circle text-sm"
+                      ></i>
+                    </span>
+
+
+                    <span class="flex-1">
+
+                      <span
+                        class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                      >
+                        My Profile
+                      </span>
+
+                      <span
+                        class="block text-[10px] text-slate-400"
+                      >
+                        Personal information
+                      </span>
+
+                    </span>
+
+
+                    <i
+                      class="bi bi-chevron-right text-[10px] text-slate-300"
+                    ></i>
+
+                  </a>
+
+
+                  <!-- APPOINTMENTS -->
+
+                  <a
+                    routerLink="/auth/appointments"
+                    (click)="closeAccountMenu()"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                  >
+
+                    <span
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-calendar2-check text-sm"
+                      ></i>
+                    </span>
+
+
+                    <span class="flex-1">
+
+                      <span
+                        class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                      >
+                        My Appointments
+                      </span>
+
+                      <span
+                        class="block text-[10px] text-slate-400"
+                      >
+                        View and manage bookings
+                      </span>
+
+                    </span>
+
+
+                    <i
+                      class="bi bi-chevron-right text-[10px] text-slate-300"
+                    ></i>
+
+                  </a>
+
+
+                  <!-- MEDICAL RECORDS -->
+
+                  <a
+                    routerLink="/auth/medical-records"
+                    (click)="closeAccountMenu()"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                  >
+
+                    <span
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-file-earmark-medical text-sm"
+                      ></i>
+                    </span>
+
+
+                    <span class="flex-1">
+
+                      <span
+                        class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                      >
+                        Medical Records
+                      </span>
+
+                      <span
+                        class="block text-[10px] text-slate-400"
+                      >
+                        View health records
+                      </span>
+
+                    </span>
+
+
+                    <i
+                      class="bi bi-chevron-right text-[10px] text-slate-300"
+                    ></i>
+
+                  </a>
+
+                </div>
+
+
+                <div
+                  class="border-t border-slate-100"
+                ></div>
+
+
+                <!-- SUPPORT -->
+
+                <a
+                  routerLink="/contact"
+                  (click)="closeAccountMenu()"
+                  class="group mt-1 flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                >
+
+                  <span
+                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                  >
+                    <i
+                      class="bi bi-headset text-sm"
+                    ></i>
+                  </span>
+
+
+                  <span class="flex-1">
+
+                    <span
+                      class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                    >
+                      Help & Support
+                    </span>
+
+                    <span
+                      class="block text-[10px] text-slate-400"
+                    >
+                      We're here to help
+                    </span>
+
+                  </span>
+
+
+                  <i
+                    class="bi bi-chevron-right text-[10px] text-slate-300"
+                  ></i>
+
+                </a>
+
+
+                <!-- LOGOUT -->
+
+                <button
+                  type="button"
+                  (click)="logout()"
+                  class="group mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all duration-200 hover:bg-red-50"
+                >
+
+                  <span
+                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-red-100 group-hover:text-red-600"
+                  >
+                    <i
+                      class="bi bi-box-arrow-right text-sm"
+                    ></i>
+                  </span>
+
+
+                  <span class="flex-1">
+
+                    <span
+                      class="block text-[12px] font-semibold text-slate-700 group-hover:text-red-600"
+                    >
+                      Sign Out
+                    </span>
+
+                    <span
+                      class="block text-[10px] text-slate-400"
+                    >
+                      Sign out of your account
+                    </span>
+
+                  </span>
+
+                </button>
+
+              </ng-container>
+
+
+              <!-- ================================================= -->
+              <!-- LOGGED OUT LINKS -->
+              <!-- ================================================= -->
+
+              <ng-container *ngIf="!isLoggedIn">
+
+                <div class="py-1">
+
+                  <!-- SIGN UP -->
+
+                  <a
+                    routerLink="/auth/register"
+                    (click)="closeAccountMenu()"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                  >
+
+                    <span
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-person-plus text-sm"
+                      ></i>
+                    </span>
+
+
+                    <span class="flex-1">
+
+                      <span
+                        class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                      >
+                        Sign Up
+                      </span>
+
+                      <span
+                        class="block text-[10px] text-slate-400"
+                      >
+                        Create a new account
+                      </span>
+
+                    </span>
+
+
+                    <i
+                      class="bi bi-chevron-right text-[10px] text-slate-300"
+                    ></i>
+
+                  </a>
+
+
+                  <!-- SIGN IN -->
+
+                  <a
+                    routerLink="/auth/login"
+                    (click)="closeAccountMenu()"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                  >
+
+                    <span
+                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                    >
+                      <i
+                        class="bi bi-box-arrow-in-right text-sm"
+                      ></i>
+                    </span>
+
+
+                    <span class="flex-1">
+
+                      <span
+                        class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                      >
+                        Sign In
+                      </span>
+
+                      <span
+                        class="block text-[10px] text-slate-400"
+                      >
+                        Access your account
+                      </span>
+
+                    </span>
+
+
+                    <i
+                      class="bi bi-chevron-right text-[10px] text-slate-300"
+                    ></i>
+
+                  </a>
+
+                </div>
+
+
+                <div
+                  class="border-t border-slate-100"
+                ></div>
+
+
+                <!-- SUPPORT -->
+
+                <a
+                  routerLink="/contact"
+                  (click)="closeAccountMenu()"
+                  class="group mt-1 flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 hover:bg-[#F1F3FA]"
+                >
+
+                  <span
+                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-[#283779]"
+                  >
+                    <i
+                      class="bi bi-headset text-sm"
+                    ></i>
+                  </span>
+
+
+                  <span class="flex-1">
+
+                    <span
+                      class="block text-[12px] font-semibold text-slate-700 group-hover:text-[#283779]"
+                    >
+                      Help & Support
+                    </span>
+
+                    <span
+                      class="block text-[10px] text-slate-400"
+                    >
+                      We're here to help
+                    </span>
+
+                  </span>
+
+
+                  <i
+                    class="bi bi-chevron-right text-[10px] text-slate-300"
+                  ></i>
+
+                </a>
+
+              </ng-container>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- MOBILE BUTTON -->
+      <!-- ================================================= -->
+
+      <button
+        type="button"
+        (click)="toggleMenu()"
+        class="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779] lg:hidden"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-label="Toggle navigation"
+      >
+
+        <i
+          class="bi text-[19px]"
+          [class.bi-list]="!isMenuOpen"
+          [class.bi-x-lg]="isMenuOpen"
+        ></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- MOBILE MENU -->
+    <!-- ================================================= -->
+
+    <div
+      *ngIf="isMenuOpen"
+      class="border-t border-slate-100 px-4 pb-5 sm:px-6 lg:hidden"
+    >
+
+      <div class="pt-4">
+
+        <!-- MOBILE SEARCH -->
+
+        <div
+          class="flex h-11 items-center gap-2 rounded-full border border-slate-200 bg-slate-50/70 px-4"
+        >
+
+          <i
+            class="bi bi-search text-[15px] text-slate-500"
+          ></i>
+
+          <input
+            type="search"
+            placeholder="Search doctors..."
+            class="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+          />
+
+        </div>
+
+
+        <!-- MOBILE NAVIGATION -->
+
+        <div
+          class="mt-3 flex flex-col gap-1"
+        >
+
+          <a
+            routerLink="/"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            Home
+          </a>
+
+
+          <a
+            routerLink="/doctors"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            Doctors
+          </a>
+
+
+          <a
+            routerLink="/departments"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            Departments
+          </a>
+
+
+          <a
+            routerLink="/services"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            Services
+          </a>
+
+
+          <a
+            routerLink="/about"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            About
+          </a>
+
+
+          <a
+            routerLink="/contact"
+            (click)="closeMenu()"
+            routerLinkActive="bg-[#F1F3FA] text-[#283779]"
+            class="rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 transition-colors hover:text-[#283779]"
+          >
+            Contact
+          </a>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- MOBILE ACCOUNT -->
+        <!-- ================================================= -->
+
+        <div
+          class="mt-4 border-t border-slate-100 pt-4"
+        >
+
+          <!-- LOGGED IN -->
+
+          <ng-container *ngIf="isLoggedIn; else mobileLoggedOut">
+
+            <div class="mb-4 flex items-center gap-3 px-1">
+
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#F1F3FA] text-[12px] font-bold text-[#283779]"
+              >
+                {{ userInitials }}
+              </div>
+
+
+              <div class="min-w-0">
+
+                <p
+                  class="truncate text-[13px] font-bold text-slate-900"
+                >
+                  {{ fullName }}
+                </p>
+
+                <p
+                  class="truncate text-[10px] text-slate-400"
+                >
+                  {{ currentUser?.email }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-3">
+
+              <a
+                routerLink="/auth/profile"
+                (click)="closeMenu()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-[12px] font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+              >
+                <i class="bi bi-person-circle"></i>
+                Profile
+              </a>
+
+
+              <a
+                routerLink="/auth/appointments"
+                (click)="closeMenu()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-[12px] font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+              >
+                <i class="bi bi-calendar2-check"></i>
+                Appointments
+              </a>
+
+
+              <a
+                routerLink="/auth/medical-records"
+                (click)="closeMenu()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-[12px] font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+              >
+                <i class="bi bi-file-earmark-medical"></i>
+                Records
+              </a>
+
+
+              <button
+                type="button"
+                (click)="logout()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-red-100 bg-red-50 text-[12px] font-semibold text-red-600 transition-all duration-200 hover:bg-red-100"
+              >
+                <i class="bi bi-box-arrow-right"></i>
+                Sign Out
+              </button>
+
+            </div>
+
+
+            <a
+              routerLink="/contact"
+              (click)="closeMenu()"
+              class="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-[12px] font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+            >
+              <i class="bi bi-headset"></i>
+              Help & Support
+            </a>
+
+          </ng-container>
+
+
+          <!-- ================================================= -->
+          <!-- MOBILE LOGGED OUT -->
+          <!-- ================================================= -->
+
+          <ng-template #mobileLoggedOut>
+
+            <div class="mb-3 px-1">
+
+              <p
+                class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400"
+              >
+                Account
+              </p>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-3">
+
+              <a
+                routerLink="/auth/login"
+                (click)="closeMenu()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+              >
+                <i class="bi bi-box-arrow-in-right"></i>
+                Sign In
+              </a>
+
+
+              <a
+                routerLink="/auth/register"
+                (click)="closeMenu()"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#283779] text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#202D61]"
+              >
+                <i class="bi bi-person-plus"></i>
+                Sign Up
+              </a>
+
+            </div>
+
+
+            <a
+              routerLink="/contact"
+              (click)="closeMenu()"
+              class="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-[12px] font-semibold text-slate-700 transition-all duration-200 hover:border-[#C9CEE2] hover:bg-[#F1F3FA] hover:text-[#283779]"
+            >
+              <i class="bi bi-headset"></i>
+              Help & Support
+            </a>
+
+          </ng-template>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</nav>

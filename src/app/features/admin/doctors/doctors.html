@@ -1,0 +1,1081 @@
+<div class="w-full">
+
+  <!-- ===================================================== -->
+  <!-- PAGE HEADER -->
+  <!-- ===================================================== -->
+
+  <div
+    class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+
+    <div class="min-w-0">
+
+      <div class="mb-1 flex items-center gap-2">
+
+        <span
+          class="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400"
+        >
+          Management
+        </span>
+
+        <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+
+        <span class="text-[10px] font-medium text-slate-400">
+          {{ doctors.length }} doctors
+        </span>
+
+      </div>
+
+
+      <h1
+        class="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl"
+      >
+        Doctors
+      </h1>
+
+      <p
+        class="mt-1 text-xs leading-5 text-slate-500 sm:text-sm"
+      >
+        Manage your hospital's medical staff and their availability.
+      </p>
+
+    </div>
+
+
+    <!-- Add Doctor -->
+
+    <button
+      type="button"
+      (click)="addDoctor()"
+      class="
+        inline-flex
+        h-10
+        w-full
+        shrink-0
+        items-center
+        justify-center
+        gap-2
+        rounded-xl
+        bg-[#283779]
+        px-4
+        text-xs
+        font-semibold
+        text-white
+        shadow-sm
+        transition
+        duration-200
+        hover:bg-[#202D61]
+        active:scale-[0.98]
+        sm:w-auto
+      "
+    >
+
+      <i class="bi bi-plus-lg text-xs"></i>
+
+      <span>Add Doctor</span>
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- QUICK SUMMARY -->
+  <!-- ===================================================== -->
+
+  <div
+    class="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-slate-200 bg-white px-4 py-3"
+  >
+
+    <div class="flex items-center gap-2">
+
+      <span
+        class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#283779]/10 text-[#283779]"
+      >
+        <i class="bi bi-people text-xs"></i>
+      </span>
+
+      <div class="flex items-center gap-1.5">
+
+        <span class="text-xs text-slate-500">
+          Total
+        </span>
+
+        <span class="text-xs font-semibold text-slate-800">
+          {{ doctors.length }}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="hidden h-5 w-px bg-slate-200 sm:block"></div>
+
+
+    <div class="flex items-center gap-2">
+
+      <span
+        class="h-2 w-2 rounded-full bg-emerald-500"
+      ></span>
+
+      <span class="text-xs text-slate-500">
+        Active
+      </span>
+
+      <span class="text-xs font-semibold text-slate-800">
+        {{ activeDoctors }}
+      </span>
+
+    </div>
+
+
+    <div class="hidden h-5 w-px bg-slate-200 sm:block"></div>
+
+
+    <div class="flex items-center gap-2">
+
+      <span
+        class="h-2 w-2 rounded-full bg-slate-300"
+      ></span>
+
+      <span class="text-xs text-slate-500">
+        Inactive
+      </span>
+
+      <span class="text-xs font-semibold text-slate-800">
+        {{ inactiveDoctors }}
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MAIN CARD -->
+  <!-- ===================================================== -->
+
+  <section
+    class="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+  >
+
+    <!-- ================================================= -->
+    <!-- FILTER TOOLBAR -->
+    <!-- ================================================= -->
+
+    <div
+      class="border-b border-slate-100 p-4 sm:p-5"
+    >
+
+      <div
+        class="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between"
+      >
+
+        <!-- Search -->
+
+        <div
+          class="relative w-full xl:max-w-md"
+        >
+
+          <i
+            class="
+              bi
+              bi-search
+              pointer-events-none
+              absolute
+              left-3.5
+              top-1/2
+              -translate-y-1/2
+              text-xs
+              text-slate-400
+            "
+          ></i>
+
+
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Search by name, email, department..."
+            class="
+              h-10
+              w-full
+              rounded-xl
+              border
+              border-slate-200
+              bg-slate-50/50
+              pl-9
+              pr-9
+              text-xs
+              text-slate-700
+              outline-none
+              transition
+              placeholder:text-slate-400
+              focus:border-[#283779]
+              focus:bg-white
+              focus:ring-2
+              focus:ring-[#283779]/10
+            "
+          />
+
+
+          @if (searchTerm) {
+
+            <button
+              type="button"
+              aria-label="Clear search"
+              (click)="searchTerm = ''"
+              class="
+                absolute
+                right-2.5
+                top-1/2
+                flex
+                h-6
+                w-6
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-md
+                text-slate-400
+                transition
+                hover:bg-slate-100
+                hover:text-slate-600
+              "
+            >
+              <i class="bi bi-x text-sm"></i>
+            </button>
+
+          }
+
+        </div>
+
+
+        <!-- Filters -->
+
+        <div
+          class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:flex xl:items-center"
+        >
+
+          <select
+            [(ngModel)]="selectedDepartment"
+            class="
+              h-10
+              w-full
+              min-w-0
+              rounded-xl
+              border
+              border-slate-200
+              bg-white
+              px-3
+              text-xs
+              text-slate-600
+              outline-none
+              transition
+              focus:border-[#283779]
+              focus:ring-2
+              focus:ring-[#283779]/10
+              sm:min-w-[170px]
+            "
+          >
+
+            <option>
+              All Departments
+            </option>
+
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Pediatrics</option>
+            <option>Orthopedics</option>
+            <option>Dermatology</option>
+            <option>General Medicine</option>
+
+          </select>
+
+
+          <select
+            [(ngModel)]="selectedStatus"
+            class="
+              h-10
+              w-full
+              min-w-0
+              rounded-xl
+              border
+              border-slate-200
+              bg-white
+              px-3
+              text-xs
+              text-slate-600
+              outline-none
+              transition
+              focus:border-[#283779]
+              focus:ring-2
+              focus:ring-[#283779]/10
+              sm:min-w-[130px]
+            "
+          >
+
+            <option>
+              All Status
+            </option>
+
+            <option>Active</option>
+            <option>Inactive</option>
+
+          </select>
+
+
+          @if (hasFilters) {
+
+            <button
+              type="button"
+              (click)="clearFilters()"
+              class="
+                h-10
+                rounded-xl
+                px-3
+                text-xs
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-slate-100
+                hover:text-slate-700
+              "
+            >
+              Clear
+            </button>
+
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- Result count -->
+
+      @if (hasFilters) {
+
+        <div class="mt-3 flex items-center gap-2">
+
+          <span class="text-[11px] text-slate-400">
+            Showing
+          </span>
+
+          <span
+            class="text-[11px] font-semibold text-slate-600"
+          >
+            {{ filteredDoctors.length }}
+          </span>
+
+          <span class="text-[11px] text-slate-400">
+            results
+          </span>
+
+        </div>
+
+      }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DESKTOP TABLE -->
+    <!-- ================================================= -->
+
+    <div class="hidden overflow-x-auto lg:block">
+
+      <table class="w-full">
+
+        <thead>
+
+          <tr
+            class="border-b border-slate-100 bg-slate-50/50"
+          >
+
+            <th
+              class="whitespace-nowrap px-5 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Doctor
+            </th>
+
+            <th
+              class="whitespace-nowrap px-4 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Department
+            </th>
+
+            <th
+              class="whitespace-nowrap px-4 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Specialization
+            </th>
+
+            <th
+              class="whitespace-nowrap px-4 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Experience
+            </th>
+
+            <th
+              class="whitespace-nowrap px-4 py-3.5 text-left text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Status
+            </th>
+
+            <th
+              class="px-5 py-3.5 text-right text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400"
+            >
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-slate-100">
+
+          @for (doctor of filteredDoctors; track doctor.id) {
+
+            <tr
+              class="transition-colors duration-150 hover:bg-slate-50/60"
+            >
+
+              <!-- Doctor -->
+
+              <td class="px-5 py-4">
+
+                <div class="flex items-center gap-3">
+
+                  <div
+                    class="
+                      flex
+                      h-10
+                      w-10
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-[#283779]/10
+                      text-[11px]
+                      font-semibold
+                      text-[#283779]
+                    "
+                  >
+                    {{ doctor.initials }}
+                  </div>
+
+
+                  <div class="min-w-0">
+
+                    <p
+                      class="truncate text-xs font-semibold text-slate-800"
+                    >
+                      {{ doctor.name }}
+                    </p>
+
+                    <p
+                      class="mt-1 truncate text-[11px] text-slate-400"
+                    >
+                      {{ doctor.email }}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <!-- Department -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="inline-flex rounded-lg bg-slate-50 px-2.5 py-1.5 text-[11px] font-medium text-slate-600"
+                >
+                  {{ doctor.department }}
+                </span>
+
+              </td>
+
+
+              <!-- Specialization -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="text-xs text-slate-500"
+                >
+                  {{ doctor.specialization }}
+                </span>
+
+              </td>
+
+
+              <!-- Experience -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="text-xs text-slate-500"
+                >
+                  {{ doctor.experience }}
+                </span>
+
+              </td>
+
+
+              <!-- Status -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="
+                    inline-flex
+                    items-center
+                    gap-1.5
+                    rounded-full
+                    px-2.5
+                    py-1
+                    text-[10px]
+                    font-semibold
+                  "
+                  [class.bg-emerald-50]="doctor.status === 'Active'"
+                  [class.text-emerald-600]="doctor.status === 'Active'"
+                  [class.bg-slate-100]="doctor.status === 'Inactive'"
+                  [class.text-slate-500]="doctor.status === 'Inactive'"
+                >
+
+                  <span
+                    class="h-1.5 w-1.5 rounded-full"
+                    [class.bg-emerald-500]="doctor.status === 'Active'"
+                    [class.bg-slate-400]="doctor.status === 'Inactive'"
+                  ></span>
+
+                  {{ doctor.status }}
+
+                </span>
+
+              </td>
+
+
+              <!-- Actions -->
+
+              <td class="px-5 py-4">
+
+                <div
+                  class="flex items-center justify-end gap-1"
+                >
+
+                  <button
+                    type="button"
+                    title="View doctor"
+                    (click)="viewDoctor(doctor)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-[#283779]/10
+                      hover:text-[#283779]
+                    "
+                  >
+                    <i class="bi bi-eye text-xs"></i>
+                  </button>
+
+
+                  <button
+                    type="button"
+                    title="Edit doctor"
+                    (click)="editDoctor(doctor)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-slate-100
+                      hover:text-slate-700
+                    "
+                  >
+                    <i class="bi bi-pencil text-xs"></i>
+                  </button>
+
+
+                  <button
+                    type="button"
+                    title="Delete doctor"
+                    (click)="deleteDoctor(doctor)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-red-50
+                      hover:text-red-500
+                    "
+                  >
+                    <i class="bi bi-trash3 text-xs"></i>
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- MOBILE / TABLET CARDS -->
+    <!-- ================================================= -->
+
+    <div
+      class="divide-y divide-slate-100 lg:hidden"
+    >
+
+      @for (doctor of filteredDoctors; track doctor.id) {
+
+        <article
+          class="p-4 sm:p-5"
+        >
+
+          <!-- Top -->
+
+          <div
+            class="flex items-start justify-between gap-3"
+          >
+
+            <div
+              class="flex min-w-0 items-center gap-3"
+            >
+
+              <div
+                class="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#283779]/10
+                  text-[11px]
+                  font-semibold
+                  text-[#283779]
+                "
+              >
+                {{ doctor.initials }}
+              </div>
+
+
+              <div class="min-w-0">
+
+                <h3
+                  class="truncate text-sm font-semibold text-slate-800"
+                >
+                  {{ doctor.name }}
+                </h3>
+
+                <p
+                  class="mt-1 truncate text-[11px] text-slate-400"
+                >
+                  {{ doctor.email }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Status -->
+
+            <span
+              class="
+                inline-flex
+                shrink-0
+                items-center
+                gap-1.5
+                rounded-full
+                px-2
+                py-1
+                text-[9px]
+                font-semibold
+              "
+              [class.bg-emerald-50]="doctor.status === 'Active'"
+              [class.text-emerald-600]="doctor.status === 'Active'"
+              [class.bg-slate-100]="doctor.status === 'Inactive'"
+              [class.text-slate-500]="doctor.status === 'Inactive'"
+            >
+
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                [class.bg-emerald-500]="doctor.status === 'Active'"
+                [class.bg-slate-400]="doctor.status === 'Inactive'"
+              ></span>
+
+              {{ doctor.status }}
+
+            </span>
+
+          </div>
+
+
+          <!-- Details -->
+
+          <div
+            class="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-3"
+          >
+
+            <div>
+
+              <p
+                class="text-[9px] font-semibold uppercase tracking-wide text-slate-400"
+              >
+                Department
+              </p>
+
+              <p
+                class="mt-1 text-xs font-medium text-slate-600"
+              >
+                {{ doctor.department }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p
+                class="text-[9px] font-semibold uppercase tracking-wide text-slate-400"
+              >
+                Specialty
+              </p>
+
+              <p
+                class="mt-1 truncate text-xs font-medium text-slate-600"
+              >
+                {{ doctor.specialization }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p
+                class="text-[9px] font-semibold uppercase tracking-wide text-slate-400"
+              >
+                Experience
+              </p>
+
+              <p
+                class="mt-1 text-xs font-medium text-slate-600"
+              >
+                {{ doctor.experience }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Actions -->
+
+          <div
+            class="mt-3 flex items-center justify-end gap-2"
+          >
+
+            <button
+              type="button"
+              (click)="viewDoctor(doctor)"
+              class="
+                inline-flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[11px]
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-slate-100
+                hover:text-[#283779]
+              "
+            >
+
+              <i class="bi bi-eye"></i>
+
+              View
+
+            </button>
+
+
+            <button
+              type="button"
+              (click)="editDoctor(doctor)"
+              class="
+                inline-flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[11px]
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-slate-100
+                hover:text-slate-700
+              "
+            >
+
+              <i class="bi bi-pencil"></i>
+
+              Edit
+
+            </button>
+
+
+            <button
+              type="button"
+              (click)="deleteDoctor(doctor)"
+              class="
+                inline-flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[11px]
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-red-50
+                hover:text-red-500
+              "
+            >
+
+              <i class="bi bi-trash3"></i>
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- EMPTY STATE -->
+    <!-- ================================================= -->
+
+    @if (filteredDoctors.length === 0) {
+
+      <div
+        class="px-5 py-16 text-center"
+      >
+
+        <div
+          class="
+            mx-auto
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-xl
+            bg-slate-100
+            text-slate-400
+          "
+        >
+          <i class="bi bi-person-x text-lg"></i>
+        </div>
+
+
+        <h3
+          class="mt-4 text-sm font-semibold text-slate-700"
+        >
+          No doctors found
+        </h3>
+
+
+        <p
+          class="mx-auto mt-1 max-w-xs text-xs leading-5 text-slate-400"
+        >
+          No doctors match your current search or filter criteria.
+        </p>
+
+
+        @if (hasFilters) {
+
+          <button
+            type="button"
+            (click)="clearFilters()"
+            class="
+              mt-4
+              text-xs
+              font-semibold
+              text-[#283779]
+              hover:text-[#202D61]
+            "
+          >
+            Clear filters
+          </button>
+
+        }
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- FOOTER / PAGINATION -->
+    <!-- ================================================= -->
+
+    @if (filteredDoctors.length > 0) {
+
+      <div
+        class="
+          flex
+          flex-col
+          gap-3
+          border-t
+          border-slate-100
+          px-4
+          py-3.5
+          sm:flex-row
+          sm:items-center
+          sm:justify-between
+          sm:px-5
+        "
+      >
+
+        <p class="text-[11px] text-slate-400">
+
+          Showing
+
+          <span class="font-semibold text-slate-600">
+            {{ filteredDoctors.length }}
+          </span>
+
+          of
+
+          <span class="font-semibold text-slate-600">
+            {{ doctors.length }}
+          </span>
+
+          doctors
+
+        </p>
+
+
+        <div class="flex items-center gap-1">
+
+          <button
+            type="button"
+            disabled
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-slate-300
+            "
+          >
+            <i class="bi bi-chevron-left text-[10px]"></i>
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              bg-[#283779]
+              text-[11px]
+              font-semibold
+              text-white
+            "
+          >
+            1
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-[11px]
+              text-slate-500
+              transition
+              hover:bg-slate-100
+            "
+          >
+            2
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-slate-500
+              transition
+              hover:bg-slate-100
+            "
+          >
+            <i class="bi bi-chevron-right text-[10px]"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+</div>

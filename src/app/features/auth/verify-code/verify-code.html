@@ -1,0 +1,489 @@
+<div class="min-h-screen bg-[#F8FAFC]">
+
+  <!-- ================================================= -->
+  <!-- MAIN -->
+  <!-- ================================================= -->
+
+  <main
+    class="flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:py-10"
+  >
+
+    <div class="w-full max-w-[500px]">
+
+
+      <!-- ================================================= -->
+      <!-- BACK -->
+      <!-- ================================================= -->
+
+      <div class="mb-5">
+
+        <button
+          type="button"
+          (click)="goBack()"
+          [disabled]="isSubmitting || isResending"
+          class="inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition-colors duration-200 hover:text-[#283779] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+
+          <i class="bi bi-arrow-left"></i>
+
+          Back to Forgot Password
+
+        </button>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- CARD -->
+      <!-- ================================================= -->
+
+      <section
+        class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.04)]"
+      >
+
+
+        <!-- ================================================= -->
+        <!-- HEADER -->
+        <!-- ================================================= -->
+
+        <div
+          class="border-b border-slate-100 px-5 py-6 sm:px-7 sm:py-7"
+        >
+
+          <!-- Icon -->
+
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#F1F3FA] text-[#283779]"
+          >
+
+            <i class="bi bi-shield-lock"></i>
+
+          </div>
+
+
+          <!-- Heading -->
+
+          <h1
+            class="text-[25px] font-bold tracking-[-0.02em] text-slate-900 sm:text-[27px]"
+          >
+            Verify your account
+          </h1>
+
+
+          <!-- Description -->
+
+          <p
+            class="mt-2 max-w-[420px] text-[13px] leading-5.5 text-slate-500"
+          >
+            Enter the 6-digit verification code we sent
+            to your email address.
+          </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- CONTENT -->
+        <!-- ================================================= -->
+
+        <div
+          class="px-5 py-6 sm:px-7 sm:py-7"
+        >
+
+
+          <!-- ================================================= -->
+          <!-- STEP INDICATOR -->
+          <!-- ================================================= -->
+
+          <div
+            class="mb-7 flex items-center"
+            aria-label="Password recovery progress"
+          >
+
+            <!-- STEP 1 -->
+
+            <div
+              class="step-dot step-dot-complete"
+            >
+
+              <i class="bi bi-check2"></i>
+
+            </div>
+
+
+            <div
+              class="step-line step-line-active"
+            ></div>
+
+
+            <!-- STEP 2 -->
+
+            <div
+              class="step-dot step-dot-active"
+            >
+              2
+            </div>
+
+
+            <div
+              class="step-line"
+            ></div>
+
+
+            <!-- STEP 3 -->
+
+            <div
+              class="step-dot"
+            >
+              3
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- EMAIL INFO -->
+          <!-- ================================================= -->
+
+          <div
+            class="mb-5 rounded-xl border border-[#E5E8F2] bg-[#F8F9FD] px-4 py-3.5"
+          >
+
+            <div
+              class="flex items-start gap-3"
+            >
+
+              <!-- Mail Icon -->
+
+              <div
+                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-[#283779] shadow-sm"
+              >
+
+                <i class="bi bi-envelope text-sm"></i>
+
+              </div>
+
+
+              <!-- Email -->
+
+              <div
+                class="min-w-0"
+              >
+
+                <p
+                  class="text-[10px] font-medium text-slate-400"
+                >
+                  Verification code sent to
+                </p>
+
+
+                <p
+                  class="mt-0.5 truncate text-xs font-semibold text-slate-700"
+                  [title]="email"
+                >
+                  {{ email }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- ERROR MESSAGE -->
+          <!-- ================================================= -->
+
+          <div
+            *ngIf="errorMessage"
+            class="mb-5 rounded-xl border border-red-200 bg-red-50 px-3.5 py-3"
+            role="alert"
+          >
+
+            <div
+              class="flex items-start gap-2.5"
+            >
+
+              <i
+                class="bi bi-exclamation-circle mt-0.5 shrink-0 text-red-500"
+              ></i>
+
+
+              <p
+                class="text-[11px] leading-4.5 text-red-600"
+              >
+                {{ errorMessage }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- SUCCESS MESSAGE -->
+          <!-- ================================================= -->
+
+          <div
+            *ngIf="successMessage"
+            class="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-3.5 py-3"
+            role="status"
+          >
+
+            <div
+              class="flex items-start gap-2.5"
+            >
+
+              <i
+                class="bi bi-check-circle mt-0.5 shrink-0 text-emerald-600"
+              ></i>
+
+
+              <p
+                class="text-[11px] leading-4.5 text-emerald-700"
+              >
+                {{ successMessage }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- VERIFY FORM -->
+          <!-- ================================================= -->
+
+          <form
+            [formGroup]="verifyForm"
+            (ngSubmit)="verifyCode()"
+            novalidate
+          >
+
+
+            <!-- ================================================= -->
+            <!-- CODE LABEL -->
+            <!-- ================================================= -->
+
+            <div>
+
+              <label
+                for="code"
+                class="mb-1.5 block text-[11px] font-semibold text-slate-700"
+              >
+                Verification code
+              </label>
+
+
+              <!-- ================================================= -->
+              <!-- CODE INPUT -->
+              <!-- ================================================= -->
+
+              <input
+                id="code"
+                type="text"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                formControlName="code"
+                placeholder="000000"
+                (input)="onCodeInput($event)"
+                [class.form-input-error]="isCodeInvalid()"
+                class="form-input verification-input"
+                aria-describedby="code-help"
+              />
+
+
+              <!-- ================================================= -->
+              <!-- HELP TEXT -->
+              <!-- ================================================= -->
+
+              <p
+                id="code-help"
+                class="mt-1.5 text-[10px] leading-4 text-slate-400"
+              >
+                Enter the 6-digit code from your email.
+              </p>
+
+
+              <!-- ================================================= -->
+              <!-- REQUIRED ERROR -->
+              <!-- ================================================= -->
+
+              <p
+                *ngIf="
+                  code?.hasError('required') &&
+                  code?.touched
+                "
+                class="field-error"
+              >
+                Verification code is required.
+              </p>
+
+
+              <!-- ================================================= -->
+              <!-- PATTERN ERROR -->
+              <!-- ================================================= -->
+
+              <p
+                *ngIf="
+                  code?.hasError('pattern') &&
+                  code?.touched
+                "
+                class="field-error"
+              >
+                Please enter a valid 6-digit code.
+              </p>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- VERIFY BUTTON -->
+            <!-- ================================================= -->
+
+            <button
+              type="submit"
+              [disabled]="isSubmitting || isResending"
+              class="primary-button mt-5"
+            >
+
+              <!-- Loading -->
+
+              <i
+                *ngIf="isSubmitting"
+                class="bi bi-arrow-repeat animate-spin"
+              ></i>
+
+
+              <!-- Normal Icon -->
+
+              <i
+                *ngIf="!isSubmitting"
+                class="bi bi-check2-circle"
+              ></i>
+
+
+              <!-- Text -->
+
+              <span>
+                {{
+                  isSubmitting
+                    ? 'Verifying code...'
+                    : 'Verify code'
+                }}
+              </span>
+
+            </button>
+
+          </form>
+
+
+          <!-- ================================================= -->
+          <!-- RESEND -->
+          <!-- ================================================= -->
+
+          <div
+            class="mt-5 flex flex-col items-center justify-center gap-1.5 text-center sm:flex-row sm:gap-2"
+          >
+
+            <span
+              class="text-[10px] text-slate-400"
+            >
+              Didn't receive the code?
+            </span>
+
+
+            <button
+              type="button"
+              (click)="resendCode()"
+              [disabled]="isSubmitting || isResending"
+              class="text-[10px] font-semibold text-[#283779] transition-colors hover:text-[#202D61] hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+            >
+
+              <span
+                *ngIf="!isResending"
+              >
+                Resend code
+              </span>
+
+
+              <span
+                *ngIf="isResending"
+                class="inline-flex items-center gap-1"
+              >
+
+                <i
+                  class="bi bi-arrow-repeat animate-spin"
+                ></i>
+
+                Sending...
+
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- DEVELOPMENT NOTE -->
+          <!-- ================================================= -->
+
+          <div
+            class="mt-6 rounded-xl border border-dashed border-slate-200 bg-slate-50 px-3.5 py-3"
+          >
+
+            <div
+              class="flex items-start gap-2"
+            >
+
+              <i
+                class="bi bi-info-circle mt-0.5 shrink-0 text-slate-400"
+              ></i>
+
+
+              <p
+                class="text-[10px] leading-4.5 text-slate-500"
+              >
+                Frontend testing code:
+                <span
+                  class="font-bold tracking-wider text-slate-700"
+                >
+                  123456
+                </span>
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================================================= -->
+      <!-- SECURITY NOTE -->
+      <!-- ================================================= -->
+
+      <div
+        class="mt-4 flex items-center justify-center gap-2 px-2 text-center text-[10px] text-slate-400"
+      >
+
+        <i
+          class="bi bi-shield-check shrink-0 text-[#283779]"
+        ></i>
+
+        <span>
+          Your account information is protected and handled securely.
+        </span>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

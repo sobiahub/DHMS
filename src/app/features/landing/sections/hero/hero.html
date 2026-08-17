@@ -1,0 +1,233 @@
+<section
+  class="relative isolate min-h-[calc(100svh-88px)] overflow-hidden bg-slate-50 pt-[60px]"
+>
+  <!-- Background images -->
+
+  <div class="absolute inset-0 -z-30 overflow-hidden">
+    @for (image of heroImages; track image; let i = $index) {
+      <img
+        [src]="image"
+        [alt]="'Digital healthcare service ' + (i + 1)"
+        class="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[1200ms] ease-in-out"
+        [class.opacity-100]="currentSlide() === i"
+        [class.opacity-0]="currentSlide() !== i"
+      />
+    }
+  </div>
+
+  <!-- Background overlays -->
+
+  <div class="absolute inset-0 -z-20 bg-white/10"></div>
+
+  <div
+    class="absolute inset-0 -z-20 bg-gradient-to-r from-white/75 via-white/40 to-white/5"
+  ></div>
+
+  <div
+    class="absolute inset-0 -z-20 bg-gradient-to-b from-white/10 via-transparent to-slate-900/5"
+  ></div>
+
+  <!-- Content -->
+
+  <div
+    class="relative mx-auto flex min-h-[calc(100svh-88px)] w-full max-w-[1500px] items-center px-6 py-12 sm:px-8 sm:py-14 md:px-10 lg:px-14 lg:py-16 xl:px-20 2xl:px-24"
+  >
+    <div
+      class="w-full max-w-3xl lg:max-w-[720px] xl:max-w-[760px]"
+    >
+      <!-- Badge -->
+
+      <div
+        class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#283779]/15 bg-white/95 px-4 py-2 shadow-[0_6px_20px_rgba(15,23,42,0.08)] backdrop-blur-md sm:mb-7"
+      >
+        <span class="relative flex h-2.5 w-2.5 shrink-0">
+          <span
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#283779]/25"
+          ></span>
+
+          <span
+            class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#283779]"
+          ></span>
+        </span>
+
+        <span
+          class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#283779] sm:text-[10px] sm:tracking-[0.2em]"
+        >
+          Trusted Digital Healthcare
+        </span>
+      </div>
+
+      <!-- Heading -->
+
+      <h1
+        class="max-w-3xl text-[2.7rem] font-extrabold leading-[1.02] tracking-[-0.045em] text-slate-950 sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[72px]"
+      >
+        Your Health,
+
+        <span
+          class="mt-1 block text-[#283779]"
+        >
+          Our Priority.
+        </span>
+      </h1>
+
+      <!-- Description -->
+
+      <p
+        class="mt-6 max-w-2xl text-sm font-medium leading-6 text-slate-700 sm:text-base sm:leading-7 md:text-lg md:leading-8"
+      >
+        Connect with trusted doctors, manage appointments, and access
+        your healthcare information through one secure, simple, and
+        convenient digital platform.
+      </p>
+
+      <!-- Buttons -->
+
+      <div
+        class="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+      >
+        <a
+          routerLink="/doctors"
+          class="group inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#283779] px-6 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(40,55,121,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#202D61] hover:shadow-[0_15px_30px_rgba(40,55,121,0.3)] sm:w-auto"
+        >
+          <span
+            class="flex h-6 w-6 items-center justify-center rounded-md bg-white/10"
+          >
+            <i class="bi bi-search text-xs"></i>
+          </span>
+
+          <span>Find a Doctor</span>
+
+          <i
+            class="bi bi-arrow-up-right text-xs transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          ></i>
+        </a>
+
+        <a
+          routerLink="/auth/appointments"
+          class="group inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl border border-slate-300/80 bg-white/95 px-6 text-sm font-semibold text-slate-800 shadow-[0_6px_20px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#283779]/30 hover:bg-white hover:text-[#283779] hover:shadow-lg sm:w-auto"
+        >
+          <span
+            class="flex h-6 w-6 items-center justify-center rounded-md bg-[#F1F3FA]"
+          >
+            <i
+              class="bi bi-calendar2-plus text-xs text-[#283779]"
+            ></i>
+          </span>
+
+          <span>Book Appointment</span>
+
+          <i
+            class="bi bi-arrow-right text-xs text-slate-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#283779]"
+          ></i>
+        </a>
+      </div>
+
+      <!-- Trust points -->
+
+      <div
+        class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-0"
+      >
+        <!-- Secure -->
+
+        <div
+          class="flex items-center gap-3 sm:pr-6"
+        >
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white bg-white/95 text-[#283779] shadow-[0_5px_15px_rgba(15,23,42,0.08)] backdrop-blur-md"
+          >
+            <i class="bi bi-shield-check text-sm"></i>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-bold text-slate-900 sm:text-sm"
+            >
+              Secure
+            </p>
+
+            <p
+              class="mt-0.5 text-[11px] font-medium text-slate-600 sm:text-xs"
+            >
+              Private & protected
+            </p>
+          </div>
+        </div>
+
+        <!-- Booking -->
+
+        <div
+          class="flex items-center gap-3 border-slate-300 sm:border-l sm:px-6"
+        >
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white bg-white/95 text-[#283779] shadow-[0_5px_15px_rgba(15,23,42,0.08)] backdrop-blur-md"
+          >
+            <i class="bi bi-calendar-check text-sm"></i>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-bold text-slate-900 sm:text-sm"
+            >
+              Easy Booking
+            </p>
+
+            <p
+              class="mt-0.5 text-[11px] font-medium text-slate-600 sm:text-xs"
+            >
+              Manage appointments
+            </p>
+          </div>
+        </div>
+
+        <!-- Healthcare -->
+
+        <div
+          class="flex items-center gap-3 border-slate-300 sm:border-l sm:px-6"
+        >
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white bg-white/95 text-[#283779] shadow-[0_5px_15px_rgba(15,23,42,0.08)] backdrop-blur-md"
+          >
+            <i class="bi bi-heart-pulse text-sm"></i>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-bold text-slate-900 sm:text-sm"
+            >
+              Quality Care
+            </p>
+
+            <p
+              class="mt-0.5 text-[11px] font-medium text-slate-600 sm:text-xs"
+            >
+              Trusted healthcare
+            </p>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+
+  <!-- Slide indicators -->
+
+  <div
+    class="absolute bottom-5 right-5 z-20 flex items-center gap-2 sm:bottom-7 sm:right-8 lg:right-12"
+  >
+    @for (image of heroImages; track image; let i = $index) {
+      <button
+        type="button"
+        (click)="goToSlide(i)"
+        class="h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#283779]/30 focus:ring-offset-2"
+        [class.w-8]="currentSlide() === i"
+        [class.w-2]="currentSlide() !== i"
+        [class.bg-[#283779]]="currentSlide() === i"
+        [class.bg-white]="currentSlide() !== i"
+        [class.opacity-60]="currentSlide() !== i"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"
+      ></button>
+    }
+  </div>
+</section>

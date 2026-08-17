@@ -1,0 +1,33 @@
+<div class="flex min-h-screen items-stretch bg-[#F8FAFC]">
+
+  <!-- Sidebar -->
+
+  <app-doctor-sidebar
+    class="block shrink-0 self-stretch"
+    [isOpen]="sidebarOpen()"
+    (closed)="closeSidebar()"
+  ></app-doctor-sidebar>
+
+
+  <!-- Main Area -->
+
+  <div class="flex min-w-0 flex-1 flex-col">
+
+    <!-- Header -->
+
+    <app-doctor-header
+      (menuClicked)="toggleSidebar()"
+    ></app-doctor-header>
+
+
+    <!-- Content -->
+
+    <main
+      class="flex-1 p-4 sm:p-6 lg:p-7"
+    >
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

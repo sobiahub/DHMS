@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+nav {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #cbd5e1;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+   ========================================================= */
+
+.active-nav {
+  background: #283779;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(40, 55, 121, 0.10);
+}
+
+.active-nav:hover {
+  background: #283779;
+  color: #ffffff;
+}
+
+
+/* Active icon */
+
+.active-nav span {
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 1023px) {
+
+  :host {
+    position: relative;
+  }
+
+}

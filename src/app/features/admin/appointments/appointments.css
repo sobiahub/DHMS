@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.table-heading {
+  white-space: nowrap;
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgb(148 163 184);
+}
+
+.action-button {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  color: rgb(148 163 184);
+  transition: all 150ms ease;
+}
+
+.action-button:hover {
+  background: rgb(248 250 252);
+  color: #283779;
+}

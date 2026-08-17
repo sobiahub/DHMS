@@ -1,0 +1,183 @@
+:host {
+  display: block;
+}
+
+
+/* -------------------------------------------------------
+   FORM INPUT
+------------------------------------------------------- */
+
+.form-input {
+  display: block;
+  width: 100%;
+  height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #1e293b;
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+
+.form-input:hover {
+  border-color: #cbd5e1;
+}
+
+
+.form-input:focus {
+  border-color: rgb(40 55 121 / 40%);
+  box-shadow: 0 0 0 4px rgb(40 55 121 / 5%);
+}
+
+
+.remember-text{
+        position: relative;
+    bottom: 5px;
+    left: 5px;
+}
+
+
+/* -------------------------------------------------------
+   ERROR INPUT
+------------------------------------------------------- */
+
+.form-input-error {
+  border-color: #fca5a5 !important;
+}
+
+
+.form-input-error:focus {
+  border-color: #f87171 !important;
+
+  box-shadow:
+    0 0 0 4px rgb(248 113 113 / 7%);
+}
+
+
+/* -------------------------------------------------------
+   VALIDATION
+------------------------------------------------------- */
+
+.field-error {
+  margin-top: 5px;
+
+  color: #ef4444;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+
+/* -------------------------------------------------------
+   REMEMBER CHECKBOX
+------------------------------------------------------- */
+
+.remember-checkbox {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  flex: 0 0 16px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  position: relative;
+
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+
+.remember-checkbox:hover {
+  border-color: #94a3b8;
+}
+
+
+.remember-checkbox:checked {
+  background-color: #283779;
+  border-color: #283779;
+}
+
+
+.remember-checkbox:checked::after {
+  content: '';
+
+  position: absolute;
+
+  left: 4px;
+  top: 1px;
+
+  width: 5px;
+  height: 9px;
+
+  border: solid white;
+  border-width: 0 1.5px 1.5px 0;
+
+  transform: rotate(45deg);
+}
+
+
+.remember-checkbox:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 3px rgb(40 55 121 / 10%);
+}
+
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+  .form-input {
+    height: 44px;
+    font-size: 13px;
+  }
+
+}
+
+
+/* -------------------------------------------------------
+   VERY SMALL SCREENS
+------------------------------------------------------- */
+
+@media (max-width: 380px) {
+
+  .form-input {
+    height: 42px;
+
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+}

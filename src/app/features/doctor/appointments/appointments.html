@@ -1,0 +1,796 @@
+<div class="min-h-full bg-[#F8FAFC]">
+
+  <main class="mx-auto max-w-[1600px] px-4 py-6 sm:px-6 lg:px-7 lg:py-7">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <section
+      class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center"
+    >
+
+      <div>
+
+        <p
+          class="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#283779]"
+        >
+          Patient Care
+        </p>
+
+        <h1
+          class="text-2xl font-bold tracking-tight text-slate-900 sm:text-[26px]"
+        >
+          Appointments
+        </h1>
+
+        <p
+          class="mt-1.5 max-w-xl text-sm leading-6 text-slate-500"
+        >
+          Manage your patient appointments, consultations, and upcoming visits.
+        </p>
+
+      </div>
+
+
+      <!-- Today -->
+
+      <div
+        class="flex w-fit items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm"
+      >
+
+        <div
+          class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#283779]/10 text-[#283779]"
+        >
+          <i class="bi bi-calendar3 text-sm"></i>
+        </div>
+
+        <div>
+
+          <p
+            class="text-[9px] font-medium uppercase tracking-wide text-slate-400"
+          >
+            Today
+          </p>
+
+          <p
+            class="text-xs font-semibold text-slate-700"
+          >
+            August 17, 2026
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- STAT CARDS -->
+    <!-- ===================================================== -->
+
+    <section
+      class="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4"
+    >
+
+      <!-- Total -->
+
+      <div
+        class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      >
+
+        <div class="flex items-center justify-between">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#283779]/10 text-[#283779]"
+          >
+            <i class="bi bi-calendar2-check text-lg"></i>
+          </div>
+
+          <span
+            class="text-[9px] font-semibold text-slate-400"
+          >
+            All
+          </span>
+
+        </div>
+
+        <p
+          class="mt-4 text-[11px] font-medium text-slate-400"
+        >
+          Total Appointments
+        </p>
+
+        <p
+          class="mt-1 text-2xl font-bold text-slate-900"
+        >
+          {{ totalAppointments }}
+        </p>
+
+      </div>
+
+
+      <!-- Confirmed -->
+
+      <div
+        class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      >
+
+        <div class="flex items-center justify-between">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600"
+          >
+            <i class="bi bi-check2-circle text-lg"></i>
+          </div>
+
+          <span
+            class="rounded-full bg-emerald-50 px-2 py-1 text-[9px] font-semibold text-emerald-600"
+          >
+            Active
+          </span>
+
+        </div>
+
+        <p
+          class="mt-4 text-[11px] font-medium text-slate-400"
+        >
+          Confirmed
+        </p>
+
+        <p
+          class="mt-1 text-2xl font-bold text-slate-900"
+        >
+          {{ confirmedAppointments }}
+        </p>
+
+      </div>
+
+
+      <!-- Pending -->
+
+      <div
+        class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      >
+
+        <div class="flex items-center justify-between">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600"
+          >
+            <i class="bi bi-clock-history text-lg"></i>
+          </div>
+
+          <span
+            class="rounded-full bg-amber-50 px-2 py-1 text-[9px] font-semibold text-amber-600"
+          >
+            Action
+          </span>
+
+        </div>
+
+        <p
+          class="mt-4 text-[11px] font-medium text-slate-400"
+        >
+          Pending
+        </p>
+
+        <p
+          class="mt-1 text-2xl font-bold text-slate-900"
+        >
+          {{ pendingAppointments }}
+        </p>
+
+      </div>
+
+
+      <!-- Completed -->
+
+      <div
+        class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      >
+
+        <div class="flex items-center justify-between">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-600"
+          >
+            <i class="bi bi-clipboard2-check text-lg"></i>
+          </div>
+
+          <span
+            class="rounded-full bg-sky-50 px-2 py-1 text-[9px] font-semibold text-sky-600"
+          >
+            Done
+          </span>
+
+        </div>
+
+        <p
+          class="mt-4 text-[11px] font-medium text-slate-400"
+        >
+          Completed
+        </p>
+
+        <p
+          class="mt-1 text-2xl font-bold text-slate-900"
+        >
+          {{ completedAppointments }}
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- APPOINTMENTS CARD -->
+    <!-- ===================================================== -->
+
+    <section
+      class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+    >
+
+      <!-- ================================================= -->
+      <!-- TOOLBAR -->
+      <!-- ================================================= -->
+
+      <div
+        class="border-b border-slate-100 px-4 py-4 sm:px-5"
+      >
+
+        <div
+          class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between"
+        >
+
+          <!-- Search -->
+
+          <div class="relative w-full lg:max-w-sm">
+
+            <i
+              class="bi bi-search pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[13px] text-slate-400"
+            ></i>
+
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              placeholder="Search patient or appointment..."
+              class="h-10 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-9 pr-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779]/30 focus:bg-white focus:ring-2 focus:ring-[#283779]/10"
+            />
+
+          </div>
+
+
+          <!-- Filters -->
+
+          <div class="flex flex-wrap items-center gap-2">
+
+            <!-- Status -->
+
+            <select
+              [(ngModel)]="selectedStatus"
+              class="h-10 rounded-xl border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 outline-none transition focus:border-[#283779]/30 focus:ring-2 focus:ring-[#283779]/10"
+            >
+
+              <option value="All">
+                All Status
+              </option>
+
+              <option value="Confirmed">
+                Confirmed
+              </option>
+
+              <option value="Pending">
+                Pending
+              </option>
+
+              <option value="Completed">
+                Completed
+              </option>
+
+              <option value="Cancelled">
+                Cancelled
+              </option>
+
+            </select>
+
+
+            <!-- Date -->
+
+            <select
+              [(ngModel)]="selectedDate"
+              class="h-10 rounded-xl border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 outline-none transition focus:border-[#283779]/30 focus:ring-2 focus:ring-[#283779]/10"
+            >
+
+              <option value="All">
+                All Dates
+              </option>
+
+              <option value="Aug 17, 2026">
+                Aug 17
+              </option>
+
+              <option value="Aug 18, 2026">
+                Aug 18
+              </option>
+
+              <option value="Aug 19, 2026">
+                Aug 19
+              </option>
+
+            </select>
+
+
+            <!-- Clear -->
+
+            @if (
+              searchTerm ||
+              selectedStatus !== 'All' ||
+              selectedDate !== 'All'
+            ) {
+
+              <button
+                type="button"
+                (click)="clearFilters()"
+                class="flex h-10 items-center gap-1.5 rounded-xl px-3 text-xs font-semibold text-slate-500 transition hover:bg-slate-100 hover:text-[#283779]"
+              >
+
+                <i class="bi bi-x-lg text-[9px]"></i>
+
+                Clear
+
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- DESKTOP TABLE -->
+      <!-- ================================================= -->
+
+      <div class="hidden overflow-x-auto md:block">
+
+        <table class="w-full min-w-[850px]">
+
+          <thead>
+
+            <tr
+              class="border-b border-slate-100 bg-slate-50/60"
+            >
+
+              <th
+                class="px-5 py-3.5 text-left text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Patient
+              </th>
+
+              <th
+                class="px-5 py-3.5 text-left text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Date & Time
+              </th>
+
+              <th
+                class="px-5 py-3.5 text-left text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Appointment
+              </th>
+
+              <th
+                class="px-5 py-3.5 text-left text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Reason
+              </th>
+
+              <th
+                class="px-5 py-3.5 text-left text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Status
+              </th>
+
+              <th
+                class="px-5 py-3.5 text-right text-[9px] font-bold uppercase tracking-wider text-slate-400"
+              >
+                Action
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody class="divide-y divide-slate-100">
+
+            @for (
+              appointment of filteredAppointments;
+              track appointment.id
+            ) {
+
+              <tr
+                class="transition hover:bg-slate-50"
+              >
+
+                <!-- Patient -->
+
+                <td class="px-5 py-4">
+
+                  <div class="flex items-center gap-3">
+
+                    <div
+                      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#283779]/10 text-[10px] font-bold text-[#283779]"
+                    >
+                      {{ appointment.initials }}
+                    </div>
+
+                    <div>
+
+                      <p
+                        class="text-xs font-semibold text-slate-700"
+                      >
+                        {{ appointment.patient }}
+                      </p>
+
+                      <p
+                        class="mt-0.5 text-[9px] text-slate-400"
+                      >
+                        {{ appointment.age }} yrs · {{ appointment.gender }}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </td>
+
+
+                <!-- Date & Time -->
+
+                <td class="px-5 py-4">
+
+                  <p
+                    class="text-[10px] font-semibold text-slate-700"
+                  >
+                    {{ appointment.date }}
+                  </p>
+
+                  <p
+                    class="mt-0.5 text-[9px] text-slate-400"
+                  >
+                    {{ appointment.time }}
+                  </p>
+
+                </td>
+
+
+                <!-- Appointment -->
+
+                <td class="px-5 py-4">
+
+                  <span
+                    class="text-[10px] font-medium text-slate-600"
+                  >
+                    {{ appointment.type }}
+                  </span>
+
+                </td>
+
+
+                <!-- Reason -->
+
+                <td class="max-w-[180px] px-5 py-4">
+
+                  <span
+                    class="block truncate text-[10px] text-slate-500"
+                  >
+                    {{ appointment.reason }}
+                  </span>
+
+                </td>
+
+
+                <!-- Status -->
+
+                <td class="px-5 py-4">
+
+                  @if (appointment.status === 'Confirmed') {
+
+                    <span
+                      class="inline-flex rounded-full bg-emerald-50 px-2.5 py-1 text-[9px] font-semibold text-emerald-600"
+                    >
+                      Confirmed
+                    </span>
+
+                  } @else if (appointment.status === 'Pending') {
+
+                    <span
+                      class="inline-flex rounded-full bg-amber-50 px-2.5 py-1 text-[9px] font-semibold text-amber-600"
+                    >
+                      Pending
+                    </span>
+
+                  } @else if (appointment.status === 'Completed') {
+
+                    <span
+                      class="inline-flex rounded-full bg-sky-50 px-2.5 py-1 text-[9px] font-semibold text-sky-600"
+                    >
+                      Completed
+                    </span>
+
+                  } @else {
+
+                    <span
+                      class="inline-flex rounded-full bg-red-50 px-2.5 py-1 text-[9px] font-semibold text-red-500"
+                    >
+                      Cancelled
+                    </span>
+
+                  }
+
+                </td>
+
+
+                <!-- Action -->
+
+                <td class="px-5 py-4 text-right">
+
+                  <button
+                    type="button"
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition hover:bg-[#283779]/10 hover:text-[#283779]"
+                    title="View appointment"
+                  >
+                    <i class="bi bi-three-dots text-sm"></i>
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- MOBILE CARDS -->
+      <!-- ================================================= -->
+
+      <div class="divide-y divide-slate-100 md:hidden">
+
+        @for (
+          appointment of filteredAppointments;
+          track appointment.id
+        ) {
+
+          <div class="p-4">
+
+            <div class="flex items-start gap-3">
+
+              <!-- Avatar -->
+
+              <div
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#283779]/10 text-[10px] font-bold text-[#283779]"
+              >
+                {{ appointment.initials }}
+              </div>
+
+
+              <!-- Main -->
+
+              <div class="min-w-0 flex-1">
+
+                <div
+                  class="flex items-start justify-between gap-3"
+                >
+
+                  <div class="min-w-0">
+
+                    <p
+                      class="truncate text-xs font-semibold text-slate-700"
+                    >
+                      {{ appointment.patient }}
+                    </p>
+
+                    <p
+                      class="mt-0.5 text-[9px] text-slate-400"
+                    >
+                      {{ appointment.age }} yrs · {{ appointment.gender }}
+                    </p>
+
+                  </div>
+
+
+                  <!-- Status -->
+
+                  @if (appointment.status === 'Confirmed') {
+
+                    <span
+                      class="shrink-0 rounded-full bg-emerald-50 px-2 py-1 text-[8px] font-semibold text-emerald-600"
+                    >
+                      Confirmed
+                    </span>
+
+                  } @else if (appointment.status === 'Pending') {
+
+                    <span
+                      class="shrink-0 rounded-full bg-amber-50 px-2 py-1 text-[8px] font-semibold text-amber-600"
+                    >
+                      Pending
+                    </span>
+
+                  } @else if (appointment.status === 'Completed') {
+
+                    <span
+                      class="shrink-0 rounded-full bg-sky-50 px-2 py-1 text-[8px] font-semibold text-sky-600"
+                    >
+                      Completed
+                    </span>
+
+                  } @else {
+
+                    <span
+                      class="shrink-0 rounded-full bg-red-50 px-2 py-1 text-[8px] font-semibold text-red-500"
+                    >
+                      Cancelled
+                    </span>
+
+                  }
+
+                </div>
+
+
+                <!-- Appointment Details -->
+
+                <div class="mt-3 grid grid-cols-2 gap-3">
+
+                  <div>
+
+                    <p
+                      class="text-[9px] font-medium uppercase tracking-wide text-slate-400"
+                    >
+                      Date & Time
+                    </p>
+
+                    <p
+                      class="mt-1 text-[10px] font-semibold text-slate-600"
+                    >
+                      {{ appointment.date }}
+                    </p>
+
+                    <p
+                      class="mt-0.5 text-[9px] text-slate-400"
+                    >
+                      {{ appointment.time }}
+                    </p>
+
+                  </div>
+
+
+                  <div>
+
+                    <p
+                      class="text-[9px] font-medium uppercase tracking-wide text-slate-400"
+                    >
+                      Type
+                    </p>
+
+                    <p
+                      class="mt-1 text-[10px] font-semibold text-slate-600"
+                    >
+                      {{ appointment.type }}
+                    </p>
+
+                  </div>
+
+                </div>
+
+
+                <!-- Reason -->
+
+                <div
+                  class="mt-3 rounded-lg bg-slate-50 px-3 py-2.5"
+                >
+
+                  <p
+                    class="text-[9px] font-medium uppercase tracking-wide text-slate-400"
+                  >
+                    Reason
+                  </p>
+
+                  <p
+                    class="mt-1 text-[10px] text-slate-500"
+                  >
+                    {{ appointment.reason }}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- EMPTY STATE -->
+      <!-- ================================================= -->
+
+      @if (filteredAppointments.length === 0) {
+
+        <div
+          class="flex flex-col items-center justify-center px-5 py-16 text-center"
+        >
+
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400"
+          >
+            <i class="bi bi-calendar-x text-xl"></i>
+          </div>
+
+          <h3
+            class="mt-4 text-sm font-semibold text-slate-700"
+          >
+            No appointments found
+          </h3>
+
+          <p
+            class="mt-1 max-w-sm text-[11px] leading-5 text-slate-400"
+          >
+            Try changing your search or filter options to find an appointment.
+          </p>
+
+          <button
+            type="button"
+            (click)="clearFilters()"
+            class="mt-4 rounded-lg bg-[#283779] px-3.5 py-2 text-[10px] font-semibold text-white transition hover:bg-[#202D61]"
+          >
+            Clear filters
+          </button>
+
+        </div>
+
+      }
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- FOOTER INFO -->
+    <!-- ===================================================== -->
+
+    <div
+      class="mt-4 flex items-center justify-between px-1"
+    >
+
+      <p
+        class="text-[10px] text-slate-400"
+      >
+        Showing {{ filteredAppointments.length }} of {{ totalAppointments }} appointments
+      </p>
+
+      <p
+        class="hidden text-[10px] text-slate-400 sm:block"
+      >
+        Appointment management
+      </p>
+
+    </div>
+
+  </main>
+
+</div>

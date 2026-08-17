@@ -1,0 +1,1213 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-[#F8FAFC] pt-20">
+
+  <!-- ================================================= -->
+  <!-- HERO -->
+  <!-- ================================================= -->
+
+  <section class="border-b border-slate-200 bg-white">
+
+    <div
+      class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10 lg:py-14"
+    >
+
+      <div
+        class="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between"
+      >
+
+        <!-- LEFT -->
+
+        <div class="max-w-2xl">
+
+          <div
+            class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#DDE2F0] bg-[#F5F6FB] px-3 py-1.5"
+          >
+
+            <span
+              class="h-1.5 w-1.5 rounded-full bg-[#283779]"
+            ></span>
+
+            <span
+              class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#283779]"
+            >
+              Appointments
+            </span>
+
+          </div>
+
+
+          <h1
+            class="text-3xl font-bold tracking-[-0.03em] text-slate-900 sm:text-4xl"
+          >
+            Your healthcare,
+            <span class="text-[#283779]">
+              on your schedule.
+            </span>
+          </h1>
+
+
+          <p
+            class="mt-3 max-w-xl text-sm leading-6 text-slate-500"
+          >
+            Book a consultation with our specialists and
+            manage your upcoming appointments in one place.
+          </p>
+
+        </div>
+
+
+        <!-- ACTION -->
+
+        <button
+          type="button"
+          (click)="openBookingForm()"
+          class="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#283779] px-5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#202D61] hover:shadow-md"
+        >
+
+          <i class="bi bi-plus-lg"></i>
+
+          Book an appointment
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- CONTENT -->
+  <!-- ================================================= -->
+
+  <main
+    class="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10"
+  >
+
+
+    <!-- ================================================= -->
+    <!-- SUCCESS -->
+    <!-- ================================================= -->
+
+    <div
+      *ngIf="successMessage"
+      class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3"
+    >
+
+      <div class="flex items-start gap-3">
+
+        <i
+          class="bi bi-check-circle-fill mt-0.5 text-emerald-600"
+        ></i>
+
+        <p
+          class="text-xs leading-5 text-emerald-700"
+        >
+          {{ successMessage }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ERROR -->
+    <!-- ================================================= -->
+
+    <div
+      *ngIf="errorMessage && !showBookingForm"
+      class="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+    >
+
+      <div class="flex items-start gap-3">
+
+        <i
+          class="bi bi-exclamation-circle mt-0.5 text-red-500"
+        ></i>
+
+        <p
+          class="text-xs leading-5 text-red-600"
+        >
+          {{ errorMessage }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- GUEST USER -->
+    <!-- ================================================= -->
+
+    <section
+      *ngIf="!isLoggedIn"
+      class="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white"
+    >
+
+      <div
+        class="grid lg:grid-cols-[1fr_auto]"
+      >
+
+        <div class="p-6 sm:p-8">
+
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#F1F3FA] text-[#283779]"
+          >
+
+            <i class="bi bi-calendar2-check"></i>
+
+          </div>
+
+
+          <h2
+            class="text-xl font-bold text-slate-900"
+          >
+            Book your appointment
+          </h2>
+
+
+          <p
+            class="mt-2 max-w-xl text-sm leading-6 text-slate-500"
+          >
+            You can book an appointment as a new patient.
+            Already have an account? Sign in to keep your
+            appointments connected to your profile.
+          </p>
+
+
+          <div
+            class="mt-5 flex flex-wrap gap-3"
+          >
+
+            <button
+              type="button"
+              (click)="openBookingForm()"
+              class="inline-flex h-10 items-center gap-2 rounded-lg bg-[#283779] px-4 text-xs font-semibold text-white transition hover:bg-[#202D61]"
+            >
+
+              <i class="bi bi-calendar-plus"></i>
+
+              Book as a patient
+
+            </button>
+
+
+            <button
+              type="button"
+              (click)="goToLogin()"
+              class="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-xs font-semibold text-slate-700 transition hover:border-[#CBD2E6] hover:bg-slate-50"
+            >
+
+              <i class="bi bi-box-arrow-in-right"></i>
+
+              Sign in
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="hidden border-l border-slate-100 bg-[#F8F9FD] px-8 py-8 lg:block"
+        >
+
+          <p
+            class="text-[10px] font-semibold uppercase tracking-wider text-slate-400"
+          >
+            New here?
+          </p>
+
+
+          <p
+            class="mt-2 max-w-[190px] text-xs leading-5 text-slate-500"
+          >
+            Create an account after booking to manage
+            your appointments more easily.
+          </p>
+
+
+          <button
+            type="button"
+            (click)="goToRegister()"
+            class="mt-4 text-xs font-semibold text-[#283779] hover:underline"
+          >
+
+            Create an account
+
+            <i class="bi bi-arrow-right ml-1"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- LOGGED-IN SUMMARY -->
+    <!-- ================================================= -->
+
+    <section
+      *ngIf="isLoggedIn"
+      class="mb-8"
+    >
+
+      <div
+        class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"
+      >
+
+        <div
+          class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+        >
+
+          <div>
+
+            <p
+              class="text-[10px] font-semibold uppercase tracking-wider text-slate-400"
+            >
+              Welcome back
+            </p>
+
+
+            <h2
+              class="mt-1 text-xl font-bold text-slate-900"
+            >
+              {{ currentUser?.firstName || 'Patient' }}
+            </h2>
+
+
+            <p
+              class="mt-1 text-xs text-slate-500"
+            >
+              Manage your appointments and upcoming visits.
+            </p>
+
+          </div>
+
+
+          <div
+            class="grid grid-cols-2 gap-3"
+          >
+
+            <div
+              class="min-w-[110px] rounded-xl bg-[#F7F8FC] px-4 py-3"
+            >
+
+              <p
+                class="text-[10px] text-slate-400"
+              >
+                Upcoming
+              </p>
+
+              <p
+                class="mt-1 text-xl font-bold text-slate-900"
+              >
+                {{ upcomingAppointments.length }}
+              </p>
+
+            </div>
+
+
+            <div
+              class="min-w-[110px] rounded-xl bg-[#F7F8FC] px-4 py-3"
+            >
+
+              <p
+                class="text-[10px] text-slate-400"
+              >
+                Previous
+              </p>
+
+              <p
+                class="mt-1 text-xl font-bold text-slate-900"
+              >
+                {{ pastAppointments.length }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- APPOINTMENTS -->
+    <!-- ================================================= -->
+
+    <section>
+
+      <!-- SECTION HEADER -->
+
+      <div
+        class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+
+        <div>
+
+          <h2
+            class="text-lg font-bold text-slate-900"
+          >
+            My appointments
+          </h2>
+
+          <p
+            class="mt-1 text-xs text-slate-500"
+          >
+            Keep track of your scheduled healthcare visits.
+          </p>
+
+        </div>
+
+
+        <!-- TABS -->
+
+        <div
+          class="inline-flex w-fit rounded-lg border border-slate-200 bg-white p-1"
+        >
+
+          <button
+            type="button"
+            (click)="setTab('upcoming')"
+            class="rounded-md px-3 py-1.5 text-[11px] font-semibold transition"
+            [ngClass]="
+              activeTab === 'upcoming'
+                ? 'bg-[#283779] text-white shadow-sm'
+                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+            "
+          >
+
+            Upcoming
+
+            <span
+              class="ml-1"
+              [ngClass]="
+                activeTab === 'upcoming'
+                  ? 'text-white/80'
+                  : 'text-slate-400'
+              "
+            >
+              {{ upcomingAppointments.length }}
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            (click)="setTab('past')"
+            class="rounded-md px-3 py-1.5 text-[11px] font-semibold transition"
+            [ngClass]="
+              activeTab === 'past'
+                ? 'bg-[#283779] text-white shadow-sm'
+                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+            "
+          >
+
+            Past
+
+            <span
+              class="ml-1"
+              [ngClass]="
+                activeTab === 'past'
+                  ? 'text-white/80'
+                  : 'text-slate-400'
+              "
+            >
+              {{ pastAppointments.length }}
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- APPOINTMENT LIST -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="displayedAppointments.length > 0"
+        class="space-y-3"
+      >
+
+        <article
+          *ngFor="let appointment of displayedAppointments"
+          class="rounded-2xl border border-slate-200 bg-white p-4 transition-shadow duration-200 hover:shadow-sm sm:p-5"
+        >
+
+          <div
+            class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between"
+          >
+
+            <!-- DOCTOR -->
+
+            <div
+              class="flex min-w-0 items-center gap-4"
+            >
+
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F1F3FA] text-[#283779]"
+              >
+
+                <i
+                  class="bi bi-person-badge text-lg"
+                ></i>
+
+              </div>
+
+
+              <div class="min-w-0">
+
+                <div
+                  class="flex flex-wrap items-center gap-2"
+                >
+
+                  <h3
+                    class="text-sm font-bold text-slate-900"
+                  >
+                    {{ appointment.doctorName }}
+                  </h3>
+
+
+                  <span
+                    class="rounded-full px-2 py-1 text-[9px] font-semibold"
+                    [ngClass]="{
+                      'bg-emerald-50 text-emerald-600':
+                        appointment.status === 'Upcoming',
+
+                      'bg-blue-50 text-blue-600':
+                        appointment.status === 'Completed',
+
+                      'bg-red-50 text-red-600':
+                        appointment.status === 'Cancelled'
+                    }"
+                  >
+                    {{ appointment.status }}
+                  </span>
+
+                </div>
+
+
+                <p
+                  class="mt-1 text-xs text-slate-500"
+                >
+                  {{ appointment.department }}
+                </p>
+
+
+                <p
+                  class="mt-1 truncate text-[11px] text-slate-400"
+                >
+                  {{ appointment.reason }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div
+              class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:min-w-[420px]"
+            >
+
+              <div
+                class="rounded-xl bg-[#F8F9FC] px-3 py-2.5"
+              >
+
+                <p
+                  class="text-[9px] uppercase tracking-wide text-slate-400"
+                >
+                  Date
+                </p>
+
+                <p
+                  class="mt-1 text-[11px] font-semibold text-slate-700"
+                >
+                  {{ formatDate(appointment.date) }}
+                </p>
+
+              </div>
+
+
+              <div
+                class="rounded-xl bg-[#F8F9FC] px-3 py-2.5"
+              >
+
+                <p
+                  class="text-[9px] uppercase tracking-wide text-slate-400"
+                >
+                  Time
+                </p>
+
+                <p
+                  class="mt-1 text-[11px] font-semibold text-slate-700"
+                >
+                  {{ appointment.time }}
+                </p>
+
+              </div>
+
+
+              <button
+                *ngIf="appointment.status === 'Upcoming'"
+                type="button"
+                (click)="cancelAppointment(appointment)"
+                class="rounded-xl border border-red-100 bg-red-50 px-3 py-2.5 text-[11px] font-semibold text-red-600 transition hover:bg-red-100"
+              >
+
+                <i class="bi bi-x-circle mr-1"></i>
+
+                Cancel
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- EMPTY STATE -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="displayedAppointments.length === 0"
+        class="rounded-2xl border border-dashed border-slate-200 bg-white px-5 py-14 text-center"
+      >
+
+        <div
+          class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#F1F3FA] text-[#283779]"
+        >
+
+          <i class="bi bi-calendar-x text-lg"></i>
+
+        </div>
+
+
+        <h3
+          class="mt-4 text-sm font-bold text-slate-900"
+        >
+          {{
+            activeTab === 'upcoming'
+              ? 'No upcoming appointments'
+              : 'No previous appointments'
+          }}
+        </h3>
+
+
+        <p
+          class="mx-auto mt-1.5 max-w-sm text-xs leading-5 text-slate-500"
+        >
+          {{
+            activeTab === 'upcoming'
+              ? 'Book an appointment with one of our specialists to get started.'
+              : 'Your completed and cancelled appointments will appear here.'
+          }}
+        </p>
+
+
+        <button
+          *ngIf="activeTab === 'upcoming'"
+          type="button"
+          (click)="openBookingForm()"
+          class="mt-5 inline-flex h-9 items-center gap-2 rounded-lg bg-[#283779] px-4 text-xs font-semibold text-white transition hover:bg-[#202D61]"
+        >
+
+          <i class="bi bi-plus-lg"></i>
+
+          Book appointment
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- BOOKING FORM -->
+    <!-- ================================================= -->
+
+    <section
+      *ngIf="showBookingForm"
+      id="booking-form"
+      class="mt-10 scroll-mt-24"
+    >
+
+      <div
+        class="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+      >
+
+        <!-- FORM HEADER -->
+
+        <div
+          class="border-b border-slate-100 px-5 py-5 sm:px-7"
+        >
+
+          <div
+            class="flex items-start justify-between gap-4"
+          >
+
+            <div>
+
+              <p
+                class="text-[10px] font-semibold uppercase tracking-wider text-[#283779]"
+              >
+                New appointment
+              </p>
+
+
+              <h2
+                class="mt-1 text-xl font-bold text-slate-900"
+              >
+                Schedule a visit
+              </h2>
+
+
+              <p
+                class="mt-1.5 text-xs leading-5 text-slate-500"
+              >
+                Fill in your details and choose a doctor,
+                date and convenient time.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="closeBookingForm()"
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+
+              <i class="bi bi-x-lg"></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+          [formGroup]="bookingForm"
+          (ngSubmit)="bookAppointment()"
+          novalidate
+          class="px-5 py-6 sm:px-7"
+        >
+
+
+          <!-- ERROR -->
+
+          <div
+            *ngIf="errorMessage"
+            class="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+          >
+
+            <div class="flex gap-2.5">
+
+              <i
+                class="bi bi-exclamation-circle text-red-500"
+              ></i>
+
+              <p
+                class="text-xs text-red-600"
+              >
+                {{ errorMessage }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- PATIENT INFORMATION -->
+
+          <div>
+
+            <h3
+              class="text-xs font-bold uppercase tracking-[0.08em] text-slate-800"
+            >
+              Patient information
+            </h3>
+
+
+            <div
+              class="mt-4 grid gap-4 sm:grid-cols-2"
+            >
+
+              <!-- FIRST NAME -->
+
+              <div>
+
+                <label
+                  for="firstName"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  First name
+                </label>
+
+                <input
+                  id="firstName"
+                  type="text"
+                  formControlName="firstName"
+                  placeholder="Enter first name"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('firstName')
+                      ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
+                      : 'border-slate-200'
+                  "
+                />
+
+                <p
+                  *ngIf="isInvalid('firstName')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  First name is required.
+                </p>
+
+              </div>
+
+
+              <!-- LAST NAME -->
+
+              <div>
+
+                <label
+                  for="lastName"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Last name
+                </label>
+
+                <input
+                  id="lastName"
+                  type="text"
+                  formControlName="lastName"
+                  placeholder="Enter last name"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('lastName')
+                      ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
+                      : 'border-slate-200'
+                  "
+                />
+
+                <p
+                  *ngIf="isInvalid('lastName')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Last name is required.
+                </p>
+
+              </div>
+
+
+              <!-- EMAIL -->
+
+              <div>
+
+                <label
+                  for="email"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Email address
+                </label>
+
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="you@example.com"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('email')
+                      ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
+                      : 'border-slate-200'
+                  "
+                />
+
+                <p
+                  *ngIf="isInvalid('email')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Enter a valid email address.
+                </p>
+
+              </div>
+
+
+              <!-- PHONE -->
+
+              <div>
+
+                <label
+                  for="phone"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Phone number
+                </label>
+
+                <input
+                  id="phone"
+                  type="tel"
+                  formControlName="phone"
+                  placeholder="+92 300 1234567"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('phone')
+                      ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
+                      : 'border-slate-200'
+                  "
+                />
+
+                <p
+                  *ngIf="isInvalid('phone')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Enter a valid phone number.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- DIVIDER -->
+
+          <div
+            class="my-7 border-t border-slate-100"
+          ></div>
+
+
+          <!-- APPOINTMENT DETAILS -->
+
+          <div>
+
+            <h3
+              class="text-xs font-bold uppercase tracking-[0.08em] text-slate-800"
+            >
+              Appointment details
+            </h3>
+
+
+            <div
+              class="mt-4 grid gap-4 sm:grid-cols-2"
+            >
+
+              <!-- DOCTOR -->
+
+              <div>
+
+                <label
+                  for="doctorId"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Select doctor
+                </label>
+
+                <select
+                  id="doctorId"
+                  formControlName="doctorId"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('doctorId')
+                      ? 'border-red-300'
+                      : 'border-slate-200'
+                  "
+                >
+
+                  <option value="">
+                    Choose a specialist
+                  </option>
+
+                  <option
+                    *ngFor="let doctor of doctors"
+                    [value]="doctor.id"
+                  >
+                    {{ doctor.name }} —
+                    {{ doctor.specialty }}
+                  </option>
+
+                </select>
+
+                <p
+                  *ngIf="isInvalid('doctorId')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Please select a doctor.
+                </p>
+
+              </div>
+
+
+              <!-- DATE -->
+
+              <div>
+
+                <label
+                  for="date"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Preferred date
+                </label>
+
+                <input
+                  id="date"
+                  type="date"
+                  formControlName="date"
+                  [min]="getToday()"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('date')
+                      ? 'border-red-300'
+                      : 'border-slate-200'
+                  "
+                />
+
+                <p
+                  *ngIf="isInvalid('date')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Please select a date.
+                </p>
+
+              </div>
+
+
+              <!-- TIME -->
+
+              <div>
+
+                <label
+                  for="time"
+                  class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+                >
+                  Preferred time
+                </label>
+
+                <select
+                  id="time"
+                  formControlName="time"
+                  class="h-10 w-full rounded-lg border bg-white px-3 text-xs text-slate-700 outline-none transition focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                  [ngClass]="
+                    isInvalid('time')
+                      ? 'border-red-300'
+                      : 'border-slate-200'
+                  "
+                >
+
+                  <option value="">
+                    Choose a time
+                  </option>
+
+                  <option value="09:00 AM">
+                    09:00 AM
+                  </option>
+
+                  <option value="10:00 AM">
+                    10:00 AM
+                  </option>
+
+                  <option value="11:00 AM">
+                    11:00 AM
+                  </option>
+
+                  <option value="12:00 PM">
+                    12:00 PM
+                  </option>
+
+                  <option value="02:00 PM">
+                    02:00 PM
+                  </option>
+
+                  <option value="03:00 PM">
+                    03:00 PM
+                  </option>
+
+                  <option value="04:00 PM">
+                    04:00 PM
+                  </option>
+
+                  <option value="05:00 PM">
+                    05:00 PM
+                  </option>
+
+                </select>
+
+                <p
+                  *ngIf="isInvalid('time')"
+                  class="mt-1.5 text-[10px] text-red-500"
+                >
+                  Please select a time.
+                </p>
+
+              </div>
+
+
+              <!-- SELECTED DOCTOR -->
+
+              <div
+                *ngIf="selectedDoctor"
+                class="flex items-center rounded-xl border border-[#E3E6F0] bg-[#F8F9FD] px-4 py-3"
+              >
+
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-[#283779] shadow-sm"
+                >
+
+                  <i class="bi bi-person-badge"></i>
+
+                </div>
+
+
+                <div class="ml-3">
+
+                  <p
+                    class="text-[9px] text-slate-400"
+                  >
+                    Selected specialist
+                  </p>
+
+                  <p
+                    class="text-xs font-semibold text-slate-700"
+                  >
+                    {{ selectedDoctor.name }}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- REASON -->
+
+            <div class="mt-4">
+
+              <label
+                for="reason"
+                class="mb-1.5 block text-[11px] font-semibold text-slate-600"
+              >
+                Reason for visit
+              </label>
+
+              <textarea
+                id="reason"
+                rows="4"
+                formControlName="reason"
+                placeholder="Briefly describe the reason for your appointment..."
+                class="w-full resize-none rounded-lg border border-slate-200 bg-white px-3 py-3 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#283779] focus:ring-2 focus:ring-[#283779]/10"
+                [ngClass]="
+                  isInvalid('reason')
+                    ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
+                    : 'border-slate-200'
+                "
+              ></textarea>
+
+
+              <div
+                class="mt-1.5 flex justify-between"
+              >
+
+                <p
+                  *ngIf="isInvalid('reason')"
+                  class="text-[10px] text-red-500"
+                >
+                  Please provide a short reason for your visit.
+                </p>
+
+                <span
+                  class="ml-auto text-[9px] text-slate-400"
+                >
+                  Max 300 characters
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div
+            class="mt-7 flex flex-col-reverse gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:justify-end"
+          >
+
+            <button
+              type="button"
+              (click)="closeBookingForm()"
+              [disabled]="isSubmitting"
+              class="h-10 rounded-lg border border-slate-200 px-5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-50"
+            >
+              Cancel
+            </button>
+
+
+            <button
+              type="submit"
+              [disabled]="isSubmitting"
+              class="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#283779] px-5 text-xs font-semibold text-white transition hover:bg-[#202D61] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+
+              <i
+                *ngIf="isSubmitting"
+                class="bi bi-arrow-repeat animate-spin"
+              ></i>
+
+              <i
+                *ngIf="!isSubmitting"
+                class="bi bi-calendar-check"
+              ></i>
+
+              {{
+                isSubmitting
+                  ? 'Booking appointment...'
+                  : 'Confirm appointment'
+              }}
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<app-footer></app-footer>

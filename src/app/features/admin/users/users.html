@@ -1,0 +1,1545 @@
+<div class="w-full">
+
+  <!-- ===================================================== -->
+  <!-- PAGE HEADER -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-6
+      flex
+      flex-col
+      gap-4
+      sm:flex-row
+      sm:items-center
+      sm:justify-between
+    "
+  >
+
+    <div class="min-w-0">
+
+      <div class="mb-1 flex items-center gap-2">
+
+        <span
+          class="
+            text-[10px]
+            font-semibold
+            uppercase
+            tracking-[0.16em]
+            text-slate-400
+          "
+        >
+          Administration
+        </span>
+
+        <span
+          class="h-1 w-1 rounded-full bg-slate-300"
+        ></span>
+
+        <span
+          class="text-[10px] font-medium text-slate-400"
+        >
+          {{ users.length }} accounts
+        </span>
+
+      </div>
+
+
+      <h1
+        class="
+          text-xl
+          font-semibold
+          tracking-tight
+          text-slate-900
+          sm:text-2xl
+        "
+      >
+        Users
+      </h1>
+
+
+      <p
+        class="
+          mt-1
+          text-xs
+          leading-5
+          text-slate-500
+          sm:text-sm
+        "
+      >
+        Manage user accounts, roles, access, and account status.
+      </p>
+
+    </div>
+
+
+    <!-- Add User -->
+
+    <button
+      type="button"
+      (click)="addUser()"
+      class="
+        inline-flex
+        h-10
+        w-full
+        shrink-0
+        items-center
+        justify-center
+        gap-2
+        rounded-xl
+        bg-[#283779]
+        px-4
+        text-xs
+        font-semibold
+        text-white
+        shadow-sm
+        transition
+        duration-200
+        hover:bg-[#202D61]
+        active:scale-[0.98]
+        sm:w-auto
+      "
+    >
+
+      <i class="bi bi-person-plus text-xs"></i>
+
+      <span>Add User</span>
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- SUMMARY -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-5
+      grid
+      grid-cols-2
+      gap-px
+      overflow-hidden
+      rounded-xl
+      border
+      border-slate-200
+      bg-slate-200
+      sm:grid-cols-3
+      xl:grid-cols-6
+    "
+  >
+
+    <!-- Total -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="
+            flex
+            h-7
+            w-7
+            items-center
+            justify-center
+            rounded-lg
+            bg-[#283779]/10
+            text-[#283779]
+          "
+        >
+          <i class="bi bi-people text-xs"></i>
+        </span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Total
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ users.length }}
+      </p>
+
+    </div>
+
+
+    <!-- Active -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="h-2 w-2 rounded-full bg-emerald-500"
+        ></span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Active
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ activeUsers }}
+      </p>
+
+    </div>
+
+
+    <!-- Doctors -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="
+            flex
+            h-7
+            w-7
+            items-center
+            justify-center
+            rounded-lg
+            bg-blue-50
+            text-blue-600
+          "
+        >
+          <i class="bi bi-person-badge text-xs"></i>
+        </span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Doctors
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ doctorCount }}
+      </p>
+
+    </div>
+
+
+    <!-- Patients -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="
+            flex
+            h-7
+            w-7
+            items-center
+            justify-center
+            rounded-lg
+            bg-emerald-50
+            text-emerald-600
+          "
+        >
+          <i class="bi bi-person text-xs"></i>
+        </span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Patients
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ patientCount }}
+      </p>
+
+    </div>
+
+
+    <!-- Staff -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="
+            flex
+            h-7
+            w-7
+            items-center
+            justify-center
+            rounded-lg
+            bg-amber-50
+            text-amber-600
+          "
+        >
+          <i class="bi bi-person-gear text-xs"></i>
+        </span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Staff
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ staffCount }}
+      </p>
+
+    </div>
+
+
+    <!-- Suspended -->
+
+    <div class="bg-white px-4 py-3.5">
+
+      <div class="flex items-center gap-2">
+
+        <span
+          class="h-2 w-2 rounded-full bg-red-500"
+        ></span>
+
+        <span
+          class="text-[11px] font-medium text-slate-400"
+        >
+          Suspended
+        </span>
+
+      </div>
+
+      <p
+        class="
+          mt-2
+          text-lg
+          font-semibold
+          text-slate-800
+        "
+      >
+        {{ suspendedUsers }}
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- USERS CARD -->
+  <!-- ===================================================== -->
+
+  <section
+    class="
+      overflow-hidden
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+    "
+  >
+
+    <!-- ================================================= -->
+    <!-- FILTER BAR -->
+    <!-- ================================================= -->
+
+    <div
+      class="
+        border-b
+        border-slate-100
+        p-4
+        sm:p-5
+      "
+    >
+
+      <div
+        class="
+          flex
+          flex-col
+          gap-3
+          lg:flex-row
+          lg:items-center
+          lg:justify-between
+        "
+      >
+
+        <!-- Search -->
+
+        <div
+          class="
+            relative
+            w-full
+            lg:max-w-md
+          "
+        >
+
+          <i
+            class="
+              bi
+              bi-search
+              pointer-events-none
+              absolute
+              left-3.5
+              top-1/2
+              -translate-y-1/2
+              text-xs
+              text-slate-400
+            "
+          ></i>
+
+
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Search by name or email..."
+            class="
+              h-10
+              w-full
+              rounded-xl
+              border
+              border-slate-200
+              bg-slate-50/50
+              pl-9
+              pr-9
+              text-xs
+              text-slate-700
+              outline-none
+              transition
+              placeholder:text-slate-400
+              focus:border-[#283779]
+              focus:bg-white
+              focus:ring-2
+              focus:ring-[#283779]/10
+            "
+          />
+
+
+          @if (searchTerm) {
+
+            <button
+              type="button"
+              aria-label="Clear search"
+              (click)="searchTerm = ''"
+              class="
+                absolute
+                right-2.5
+                top-1/2
+                flex
+                h-6
+                w-6
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-md
+                text-slate-400
+                hover:bg-slate-100
+              "
+            >
+              <i class="bi bi-x text-sm"></i>
+            </button>
+
+          }
+
+        </div>
+
+
+        <!-- Filters -->
+
+        <div
+          class="
+            grid
+            grid-cols-1
+            gap-2
+            sm:grid-cols-2
+          "
+        >
+
+          <!-- Role -->
+
+          <div class="relative">
+
+            <i
+              class="
+                bi
+                bi-person-badge
+                pointer-events-none
+                absolute
+                left-3
+                top-1/2
+                z-10
+                -translate-y-1/2
+                text-xs
+                text-slate-400
+              "
+            ></i>
+
+
+            <select
+              [(ngModel)]="selectedRole"
+              class="
+                h-10
+                w-full
+                appearance-none
+                rounded-xl
+                border
+                border-slate-200
+                bg-white
+                pl-9
+                pr-9
+                text-xs
+                font-medium
+                text-slate-600
+                outline-none
+                transition
+                focus:border-[#283779]
+                focus:ring-2
+                focus:ring-[#283779]/10
+                sm:min-w-[145px]
+              "
+            >
+
+              <option value="All Roles">
+                All Roles
+              </option>
+
+              <option value="Admin">
+                Admin
+              </option>
+
+              <option value="Doctor">
+                Doctor
+              </option>
+
+              <option value="Patient">
+                Patient
+              </option>
+
+              <option value="Staff">
+                Staff
+              </option>
+
+            </select>
+
+
+            <i
+              class="
+                bi
+                bi-chevron-down
+                pointer-events-none
+                absolute
+                right-3
+                top-1/2
+                -translate-y-1/2
+                text-[10px]
+                text-slate-400
+              "
+            ></i>
+
+          </div>
+
+
+          <!-- Status -->
+
+          <div class="relative">
+
+            <i
+              class="
+                bi
+                bi-circle-half
+                pointer-events-none
+                absolute
+                left-3
+                top-1/2
+                z-10
+                -translate-y-1/2
+                text-xs
+                text-slate-400
+              "
+            ></i>
+
+
+            <select
+              [(ngModel)]="selectedStatus"
+              class="
+                h-10
+                w-full
+                appearance-none
+                rounded-xl
+                border
+                border-slate-200
+                bg-white
+                pl-9
+                pr-9
+                text-xs
+                font-medium
+                text-slate-600
+                outline-none
+                transition
+                focus:border-[#283779]
+                focus:ring-2
+                focus:ring-[#283779]/10
+                sm:min-w-[145px]
+              "
+            >
+
+              <option value="All Status">
+                All Status
+              </option>
+
+              <option value="Active">
+                Active
+              </option>
+
+              <option value="Inactive">
+                Inactive
+              </option>
+
+              <option value="Suspended">
+                Suspended
+              </option>
+
+            </select>
+
+
+            <i
+              class="
+                bi
+                bi-chevron-down
+                pointer-events-none
+                absolute
+                right-3
+                top-1/2
+                -translate-y-1/2
+                text-[10px]
+                text-slate-400
+              "
+            ></i>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      @if (hasFilters) {
+
+        <div class="mt-3 flex items-center gap-2">
+
+          <span class="text-[11px] text-slate-400">
+            Showing
+          </span>
+
+          <span
+            class="text-[11px] font-semibold text-slate-600"
+          >
+            {{ filteredUsers.length }}
+          </span>
+
+          <span class="text-[11px] text-slate-400">
+            users
+          </span>
+
+
+          <button
+            type="button"
+            (click)="clearFilters()"
+            class="
+              ml-1
+              text-[11px]
+              font-semibold
+              text-[#283779]
+              hover:text-[#202D61]
+            "
+          >
+            Clear filters
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DESKTOP TABLE -->
+    <!-- ================================================= -->
+
+    <div class="hidden overflow-x-auto md:block">
+
+      <table class="w-full min-w-[760px]">
+
+        <thead>
+
+          <tr
+            class="
+              border-b
+              border-slate-100
+              bg-slate-50/60
+            "
+          >
+
+            <th
+              class="
+                px-5
+                py-3.5
+                text-left
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-wider
+                text-slate-400
+              "
+            >
+              User
+            </th>
+
+            <th
+              class="
+                px-4
+                py-3.5
+                text-left
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-wider
+                text-slate-400
+              "
+            >
+              Role
+            </th>
+
+            <th
+              class="
+                px-4
+                py-3.5
+                text-left
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-wider
+                text-slate-400
+              "
+            >
+              Status
+            </th>
+
+            <th
+              class="
+                px-4
+                py-3.5
+                text-left
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-wider
+                text-slate-400
+              "
+            >
+              Last Login
+            </th>
+
+            <th
+              class="
+                px-5
+                py-3.5
+                text-right
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-wider
+                text-slate-400
+              "
+            >
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (
+            user of filteredUsers;
+            track user.id
+          ) {
+
+            <tr
+              class="
+                border-b
+                border-slate-100
+                transition
+                last:border-0
+                hover:bg-slate-50/50
+              "
+            >
+
+              <!-- User -->
+
+              <td class="px-5 py-4">
+
+                <div
+                  class="
+                    flex
+                    items-center
+                    gap-3
+                  "
+                >
+
+                  <div
+                    class="
+                      flex
+                      h-9
+                      w-9
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-[#283779]/10
+                      text-[10px]
+                      font-semibold
+                      text-[#283779]
+                    "
+                  >
+                    {{ user.avatar }}
+                  </div>
+
+
+                  <div class="min-w-0">
+
+                    <p
+                      class="
+                        truncate
+                        text-xs
+                        font-semibold
+                        text-slate-700
+                      "
+                    >
+                      {{ user.name }}
+                    </p>
+
+                    <p
+                      class="
+                        mt-0.5
+                        truncate
+                        text-[10px]
+                        text-slate-400
+                      "
+                    >
+                      {{ user.email }}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <!-- Role -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="
+                    inline-flex
+                    items-center
+                    gap-1.5
+                    rounded-full
+                    px-2.5
+                    py-1
+                    text-[9px]
+                    font-semibold
+                  "
+                  [class]="getRoleClasses(user.role)"
+                >
+
+                  <i
+                    class="bi text-[9px]"
+                    [class]="getRoleIcon(user.role)"
+                  ></i>
+
+                  {{ user.role }}
+
+                </span>
+
+              </td>
+
+
+              <!-- Status -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="
+                    inline-flex
+                    items-center
+                    gap-1.5
+                    text-[10px]
+                    font-medium
+                  "
+                  [class.text-emerald-600]="user.status === 'Active'"
+                  [class.text-slate-500]="user.status === 'Inactive'"
+                  [class.text-red-500]="user.status === 'Suspended'"
+                >
+
+                  <span
+                    class="h-1.5 w-1.5 rounded-full"
+                    [class.bg-emerald-500]="user.status === 'Active'"
+                    [class.bg-slate-400]="user.status === 'Inactive'"
+                    [class.bg-red-500]="user.status === 'Suspended'"
+                  ></span>
+
+                  {{ user.status }}
+
+                </span>
+
+              </td>
+
+
+              <!-- Last Login -->
+
+              <td class="px-4 py-4">
+
+                <span
+                  class="text-[10px] text-slate-500"
+                >
+                  {{ user.lastLogin }}
+                </span>
+
+              </td>
+
+
+              <!-- Actions -->
+
+              <td class="px-5 py-4">
+
+                <div
+                  class="
+                    flex
+                    items-center
+                    justify-end
+                    gap-1
+                  "
+                >
+
+                  <button
+                    type="button"
+                    title="View user"
+                    (click)="viewUser(user)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-[#283779]/10
+                      hover:text-[#283779]
+                    "
+                  >
+                    <i class="bi bi-eye text-xs"></i>
+                  </button>
+
+
+                  <button
+                    type="button"
+                    title="Edit user"
+                    (click)="editUser(user)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-slate-100
+                      hover:text-[#283779]
+                    "
+                  >
+                    <i class="bi bi-pencil text-xs"></i>
+                  </button>
+
+
+                  <button
+                    type="button"
+                    title="Change status"
+                    (click)="toggleStatus(user)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-slate-100
+                      hover:text-amber-500
+                    "
+                  >
+                    <i class="bi bi-toggle-on text-xs"></i>
+                  </button>
+
+
+                  <button
+                    type="button"
+                    title="Delete user"
+                    (click)="deleteUser(user)"
+                    class="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-400
+                      transition
+                      hover:bg-red-50
+                      hover:text-red-500
+                    "
+                  >
+                    <i class="bi bi-trash3 text-xs"></i>
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- MOBILE USERS -->
+    <!-- ================================================= -->
+
+    <div class="divide-y divide-slate-100 md:hidden">
+
+      @for (
+        user of filteredUsers;
+        track user.id
+      ) {
+
+        <article class="p-4">
+
+          <!-- User -->
+
+          <div
+            class="
+              flex
+              items-start
+              justify-between
+              gap-3
+            "
+          >
+
+            <div
+              class="
+                flex
+                min-w-0
+                items-center
+                gap-3
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#283779]/10
+                  text-[10px]
+                  font-semibold
+                  text-[#283779]
+                "
+              >
+                {{ user.avatar }}
+              </div>
+
+
+              <div class="min-w-0">
+
+                <p
+                  class="
+                    truncate
+                    text-xs
+                    font-semibold
+                    text-slate-700
+                  "
+                >
+                  {{ user.name }}
+                </p>
+
+                <p
+                  class="
+                    mt-0.5
+                    truncate
+                    text-[10px]
+                    text-slate-400
+                  "
+                >
+                  {{ user.email }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Status -->
+
+            <span
+              class="
+                inline-flex
+                shrink-0
+                items-center
+                gap-1.5
+                rounded-full
+                px-2
+                py-1
+                text-[9px]
+                font-semibold
+              "
+              [class.bg-emerald-50]="user.status === 'Active'"
+              [class.text-emerald-600]="user.status === 'Active'"
+              [class.bg-slate-100]="user.status === 'Inactive'"
+              [class.text-slate-500]="user.status === 'Inactive'"
+              [class.bg-red-50]="user.status === 'Suspended'"
+              [class.text-red-500]="user.status === 'Suspended'"
+            >
+
+              {{ user.status }}
+
+            </span>
+
+          </div>
+
+
+          <!-- Meta -->
+
+          <div
+            class="
+              mt-4
+              flex
+              flex-wrap
+              items-center
+              gap-2
+            "
+          >
+
+            <span
+              class="
+                inline-flex
+                items-center
+                gap-1.5
+                rounded-full
+                px-2.5
+                py-1
+                text-[9px]
+                font-semibold
+              "
+              [class]="getRoleClasses(user.role)"
+            >
+
+              <i
+                class="bi text-[9px]"
+                [class]="getRoleIcon(user.role)"
+              ></i>
+
+              {{ user.role }}
+
+            </span>
+
+
+            <span
+              class="text-[10px] text-slate-400"
+            >
+              Last login:
+            </span>
+
+            <span
+              class="text-[10px] font-medium text-slate-500"
+            >
+              {{ user.lastLogin }}
+            </span>
+
+          </div>
+
+
+          <!-- Actions -->
+
+          <div
+            class="
+              mt-4
+              flex
+              items-center
+              justify-end
+              gap-1
+              border-t
+              border-slate-100
+              pt-3
+            "
+          >
+
+            <button
+              type="button"
+              (click)="viewUser(user)"
+              class="
+                flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[10px]
+                font-medium
+                text-[#283779]
+                transition
+                hover:bg-[#283779]/10
+              "
+            >
+              <i class="bi bi-eye text-[10px]"></i>
+              View
+            </button>
+
+
+            <button
+              type="button"
+              (click)="editUser(user)"
+              class="
+                flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[10px]
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-slate-100
+              "
+            >
+              <i class="bi bi-pencil text-[10px]"></i>
+              Edit
+            </button>
+
+
+            <button
+              type="button"
+              (click)="toggleStatus(user)"
+              class="
+                flex
+                h-8
+                items-center
+                gap-1.5
+                rounded-lg
+                px-2.5
+                text-[10px]
+                font-medium
+                text-slate-500
+                transition
+                hover:bg-slate-100
+              "
+            >
+              <i class="bi bi-toggle-on text-[10px]"></i>
+              Status
+            </button>
+
+
+            <button
+              type="button"
+              (click)="deleteUser(user)"
+              class="
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-lg
+                text-slate-400
+                transition
+                hover:bg-red-50
+                hover:text-red-500
+              "
+            >
+              <i class="bi bi-trash3 text-[10px]"></i>
+            </button>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- EMPTY STATE -->
+    <!-- ================================================= -->
+
+    @if (filteredUsers.length === 0) {
+
+      <div
+        class="px-5 py-16 text-center"
+      >
+
+        <div
+          class="
+            mx-auto
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-xl
+            bg-slate-100
+            text-slate-400
+          "
+        >
+          <i class="bi bi-people text-lg"></i>
+        </div>
+
+
+        <h3
+          class="
+            mt-4
+            text-sm
+            font-semibold
+            text-slate-700
+          "
+        >
+          No users found
+        </h3>
+
+
+        <p
+          class="
+            mx-auto
+            mt-1
+            max-w-xs
+            text-xs
+            leading-5
+            text-slate-400
+          "
+        >
+          No users match your current search or filter criteria.
+        </p>
+
+
+        @if (hasFilters) {
+
+          <button
+            type="button"
+            (click)="clearFilters()"
+            class="
+              mt-4
+              text-xs
+              font-semibold
+              text-[#283779]
+              hover:text-[#202D61]
+            "
+          >
+            Clear filters
+          </button>
+
+        }
+
+      </div>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- FOOTER -->
+    <!-- ================================================= -->
+
+    @if (filteredUsers.length > 0) {
+
+      <div
+        class="
+          flex
+          flex-col
+          gap-3
+          border-t
+          border-slate-100
+          px-4
+          py-3.5
+          sm:flex-row
+          sm:items-center
+          sm:justify-between
+          sm:px-5
+        "
+      >
+
+        <p
+          class="text-[11px] text-slate-400"
+        >
+
+          Showing
+
+          <span
+            class="font-semibold text-slate-600"
+          >
+            {{ filteredUsers.length }}
+          </span>
+
+          of
+
+          <span
+            class="font-semibold text-slate-600"
+          >
+            {{ users.length }}
+          </span>
+
+          users
+
+        </p>
+
+
+        <div class="flex items-center gap-1">
+
+          <button
+            type="button"
+            disabled
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-slate-300
+            "
+          >
+            <i class="bi bi-chevron-left text-[10px]"></i>
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              bg-[#283779]
+              text-[11px]
+              font-semibold
+              text-white
+            "
+          >
+            1
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-[11px]
+              text-slate-500
+              transition
+              hover:bg-slate-100
+            "
+          >
+            2
+          </button>
+
+
+          <button
+            type="button"
+            class="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-lg
+              text-slate-500
+              transition
+              hover:bg-slate-100
+            "
+          >
+            <i class="bi bi-chevron-right text-[10px]"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+</div>

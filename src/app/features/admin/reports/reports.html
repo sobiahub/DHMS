@@ -1,0 +1,1869 @@
+<div class="w-full">
+
+  <!-- ===================================================== -->
+  <!-- PAGE HEADER -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-6
+      flex
+      flex-col
+      gap-4
+      lg:flex-row
+      lg:items-end
+      lg:justify-between
+    "
+  >
+
+    <!-- Heading -->
+
+    <div>
+
+      <div
+        class="
+          mb-1
+          flex
+          items-center
+          gap-2
+        "
+      >
+
+        <span
+          class="
+            text-[10px]
+            font-semibold
+            uppercase
+            tracking-[0.16em]
+            text-slate-400
+          "
+        >
+          Administration
+        </span>
+
+        <span
+          class="h-1 w-1 rounded-full bg-slate-300"
+        ></span>
+
+        <span
+          class="text-[10px] font-medium text-slate-400"
+        >
+          Analytics
+        </span>
+
+      </div>
+
+
+      <h1
+        class="
+          text-xl
+          font-semibold
+          tracking-tight
+          text-slate-900
+          sm:text-2xl
+        "
+      >
+        Reports
+      </h1>
+
+
+      <p
+        class="
+          mt-1
+          max-w-xl
+          text-xs
+          leading-5
+          text-slate-500
+          sm:text-sm
+        "
+      >
+        Monitor hospital activity, appointments, patients,
+        doctors, and department performance.
+      </p>
+
+    </div>
+
+
+    <!-- Filters -->
+
+    <div
+      class="
+        grid
+        grid-cols-1
+        gap-2
+        sm:grid-cols-2
+        lg:w-auto
+      "
+    >
+
+      <!-- Period -->
+
+      <div class="relative">
+
+        <i
+          class="
+            bi
+            bi-calendar3
+            pointer-events-none
+            absolute
+            left-3
+            top-1/2
+            z-10
+            -translate-y-1/2
+            text-xs
+            text-slate-400
+          "
+        ></i>
+
+
+        <select
+          [(ngModel)]="selectedPeriod"
+          class="
+            h-10
+            w-full
+            appearance-none
+            rounded-xl
+            border
+            border-slate-200
+            bg-white
+            pl-9
+            pr-9
+            text-xs
+            font-medium
+            text-slate-600
+            outline-none
+            transition
+            focus:border-[#283779]
+            focus:ring-2
+            focus:ring-[#283779]/10
+            sm:min-w-[145px]
+          "
+        >
+
+          <option>
+            Today
+          </option>
+
+          <option>
+            This Week
+          </option>
+
+          <option>
+            This Month
+          </option>
+
+          <option>
+            Last Month
+          </option>
+
+          <option>
+            This Year
+          </option>
+
+        </select>
+
+
+        <i
+          class="
+            bi
+            bi-chevron-down
+            pointer-events-none
+            absolute
+            right-3
+            top-1/2
+            -translate-y-1/2
+            text-[10px]
+            text-slate-400
+          "
+        ></i>
+
+      </div>
+
+
+      <!-- Generate -->
+
+      <button
+        type="button"
+        (click)="generateReport()"
+        class="
+          inline-flex
+          h-10
+          items-center
+          justify-center
+          gap-2
+          rounded-xl
+          bg-[#283779]
+          px-4
+          text-xs
+          font-semibold
+          text-white
+          shadow-sm
+          transition
+          hover:bg-[#202D61]
+          active:scale-[0.98]
+        "
+      >
+
+        <i class="bi bi-file-earmark-bar-graph text-xs"></i>
+
+        Generate Report
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- KEY METRICS -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-5
+      grid
+      grid-cols-1
+      gap-3
+      sm:grid-cols-2
+      xl:grid-cols-4
+    "
+  >
+
+    <!-- Appointments -->
+
+    <div
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        transition
+        hover:shadow-sm
+      "
+    >
+
+      <div
+        class="
+          flex
+          items-start
+          justify-between
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-[11px]
+              font-medium
+              text-slate-400
+            "
+          >
+            Total Appointments
+          </p>
+
+          <p
+            class="
+              mt-2
+              text-2xl
+              font-semibold
+              tracking-tight
+              text-slate-800
+            "
+          >
+            {{ totalAppointments }}
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-xl
+            bg-[#283779]/10
+            text-[#283779]
+          "
+        >
+          <i class="bi bi-calendar2-check"></i>
+        </span>
+
+      </div>
+
+
+      <div
+        class="
+          mt-3
+          flex
+          items-center
+          gap-1.5
+          text-[10px]
+        "
+      >
+
+        <span
+          class="
+            inline-flex
+            items-center
+            gap-1
+            font-semibold
+            text-emerald-600
+          "
+        >
+          <i class="bi bi-arrow-up-short"></i>
+          12.5%
+        </span>
+
+        <span class="text-slate-400">
+          vs last period
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Completion -->
+
+    <div
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        transition
+        hover:shadow-sm
+      "
+    >
+
+      <div
+        class="
+          flex
+          items-start
+          justify-between
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-[11px]
+              font-medium
+              text-slate-400
+            "
+          >
+            Completion Rate
+          </p>
+
+          <p
+            class="
+              mt-2
+              text-2xl
+              font-semibold
+              tracking-tight
+              text-slate-800
+            "
+          >
+            {{ completionRate }}%
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-xl
+            bg-emerald-50
+            text-emerald-600
+          "
+        >
+          <i class="bi bi-check2-circle"></i>
+        </span>
+
+      </div>
+
+
+      <div
+        class="
+          mt-3
+          h-1.5
+          overflow-hidden
+          rounded-full
+          bg-slate-100
+        "
+      >
+
+        <div
+          class="
+            h-full
+            rounded-full
+            bg-emerald-500
+            transition-all
+          "
+          [style.width.%]="completionRate"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Patients -->
+
+    <div
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        transition
+        hover:shadow-sm
+      "
+    >
+
+      <div
+        class="
+          flex
+          items-start
+          justify-between
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-[11px]
+              font-medium
+              text-slate-400
+            "
+          >
+            Total Patients
+          </p>
+
+          <p
+            class="
+              mt-2
+              text-2xl
+              font-semibold
+              tracking-tight
+              text-slate-800
+            "
+          >
+            {{ totalPatients }}
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-xl
+            bg-blue-50
+            text-blue-600
+          "
+        >
+          <i class="bi bi-people"></i>
+        </span>
+
+      </div>
+
+
+      <div
+        class="
+          mt-3
+          flex
+          items-center
+          gap-1.5
+          text-[10px]
+        "
+      >
+
+        <span
+          class="
+            inline-flex
+            items-center
+            gap-1
+            font-semibold
+            text-emerald-600
+          "
+        >
+          <i class="bi bi-plus"></i>
+          {{ newPatients }}
+        </span>
+
+        <span class="text-slate-400">
+          new this period
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Doctors -->
+
+    <div
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        transition
+        hover:shadow-sm
+      "
+    >
+
+      <div
+        class="
+          flex
+          items-start
+          justify-between
+        "
+      >
+
+        <div>
+
+          <p
+            class="
+              text-[11px]
+              font-medium
+              text-slate-400
+            "
+          >
+            Active Doctors
+          </p>
+
+          <p
+            class="
+              mt-2
+              text-2xl
+              font-semibold
+              tracking-tight
+              text-slate-800
+            "
+          >
+            {{ activeDoctors }}
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-xl
+            bg-violet-50
+            text-violet-600
+          "
+        >
+          <i class="bi bi-person-badge"></i>
+        </span>
+
+      </div>
+
+
+      <div
+        class="
+          mt-3
+          text-[10px]
+          text-slate-400
+        "
+      >
+
+        {{ totalDoctors }} doctors registered
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- ANALYTICS GRID -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-5
+      grid
+      grid-cols-1
+      gap-5
+      xl:grid-cols-[1.6fr_1fr]
+    "
+  >
+
+    <!-- ================================================= -->
+    <!-- APPOINTMENT TREND -->
+    <!-- ================================================= -->
+
+    <section
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        sm:p-5
+      "
+    >
+
+      <div
+        class="
+          mb-6
+          flex
+          items-start
+          justify-between
+          gap-3
+        "
+      >
+
+        <div>
+
+          <h2
+            class="
+              text-sm
+              font-semibold
+              text-slate-800
+            "
+          >
+            Appointment Activity
+          </h2>
+
+          <p
+            class="
+              mt-1
+              text-[10px]
+              text-slate-400
+            "
+          >
+            Appointment volume during {{ selectedPeriod.toLowerCase() }}.
+          </p>
+
+        </div>
+
+
+        <div
+          class="
+            hidden
+            items-center
+            gap-3
+            sm:flex
+          "
+        >
+
+          <span
+            class="
+              flex
+              items-center
+              gap-1.5
+              text-[9px]
+              text-slate-400
+            "
+          >
+            <span
+              class="
+                h-2
+                w-2
+                rounded-full
+                bg-[#283779]
+              "
+            ></span>
+            Total
+          </span>
+
+
+          <span
+            class="
+              flex
+              items-center
+              gap-1.5
+              text-[9px]
+              text-slate-400
+            "
+          >
+            <span
+              class="
+                h-2
+                w-2
+                rounded-full
+                bg-emerald-500
+              "
+            ></span>
+            Completed
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Chart -->
+
+      <div
+        class="
+          flex
+          h-64
+          items-end
+          gap-2
+          sm:gap-4
+        "
+      >
+
+        @for (
+          item of appointmentTrend;
+          track item.day
+        ) {
+
+          <div
+            class="
+              flex
+              min-w-0
+              flex-1
+              flex-col
+              items-center
+              justify-end
+              gap-2
+            "
+          >
+
+            <!-- Bars -->
+
+            <div
+              class="
+                flex
+                h-48
+                w-full
+                max-w-10
+                items-end
+                justify-center
+                gap-1
+              "
+            >
+
+              <!-- Total -->
+
+              <div
+                class="
+                  w-1/2
+                  rounded-t-md
+                  bg-[#283779]/20
+                  transition-all
+                  hover:bg-[#283779]/30
+                "
+                [style.height]="getBarHeight(item.total)"
+                [title]="'Total: ' + item.total"
+              ></div>
+
+
+              <!-- Completed -->
+
+              <div
+                class="
+                  w-1/2
+                  rounded-t-md
+                  bg-emerald-500/70
+                  transition-all
+                  hover:bg-emerald-500
+                "
+                [style.height]="getBarHeight(item.completed)"
+                [title]="'Completed: ' + item.completed"
+              ></div>
+
+            </div>
+
+
+            <span
+              class="
+                text-[9px]
+                font-medium
+                text-slate-400
+              "
+            >
+              {{ item.day }}
+            </span>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- DEPARTMENT REPORT -->
+    <!-- ================================================= -->
+
+    <section
+      class="
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        p-4
+        sm:p-5
+      "
+    >
+
+      <div
+        class="
+          mb-5
+          flex
+          items-start
+          justify-between
+        "
+      >
+
+        <div>
+
+          <h2
+            class="
+              text-sm
+              font-semibold
+              text-slate-800
+            "
+          >
+            Department Activity
+          </h2>
+
+          <p
+            class="
+              mt-1
+              text-[10px]
+              text-slate-400
+            "
+          >
+            Appointments by department.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="
+            flex
+            h-8
+            w-8
+            items-center
+            justify-center
+            rounded-lg
+            text-slate-400
+            transition
+            hover:bg-slate-50
+            hover:text-[#283779]
+          "
+          title="View full report"
+        >
+          <i class="bi bi-three-dots text-xs"></i>
+        </button>
+
+      </div>
+
+
+      <div class="space-y-5">
+
+        @for (
+          department of departmentReports;
+          track department.name
+        ) {
+
+          <div>
+
+            <div
+              class="
+                mb-2
+                flex
+                items-center
+                justify-between
+                gap-3
+              "
+            >
+
+              <span
+                class="
+                  truncate
+                  text-[11px]
+                  font-medium
+                  text-slate-600
+                "
+              >
+                {{ department.name }}
+              </span>
+
+
+              <span
+                class="
+                  shrink-0
+                  text-[10px]
+                  font-semibold
+                  text-slate-500
+                "
+              >
+                {{ department.appointments }}
+              </span>
+
+            </div>
+
+
+            <div
+              class="
+                h-1.5
+                overflow-hidden
+                rounded-full
+                bg-slate-100
+              "
+            >
+
+              <div
+                class="
+                  h-full
+                  rounded-full
+                  bg-[#283779]
+                  transition-all
+                "
+                [style.width.%]="department.percentage"
+              ></div>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- LOWER GRID -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      mb-5
+      grid
+      grid-cols-1
+      gap-5
+      xl:grid-cols-[1.5fr_1fr]
+    "
+  >
+
+    <!-- ================================================= -->
+    <!-- TOP DOCTORS -->
+    <!-- ================================================= -->
+
+    <section
+      class="
+        overflow-hidden
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+      "
+    >
+
+      <div
+        class="
+          flex
+          items-center
+          justify-between
+          border-b
+          border-slate-100
+          px-4
+          py-4
+          sm:px-5
+        "
+      >
+
+        <div>
+
+          <h2
+            class="
+              text-sm
+              font-semibold
+              text-slate-800
+            "
+          >
+            Doctor Performance
+          </h2>
+
+          <p
+            class="
+              mt-1
+              text-[10px]
+              text-slate-400
+            "
+          >
+            Top performing doctors this period.
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            rounded-full
+            bg-slate-50
+            px-2.5
+            py-1
+            text-[9px]
+            font-medium
+            text-slate-400
+          "
+        >
+          {{ doctorReports.length }} doctors
+        </span>
+
+      </div>
+
+
+      <!-- Desktop -->
+
+      <div class="hidden overflow-x-auto sm:block">
+
+        <table class="w-full">
+
+          <thead>
+
+            <tr
+              class="
+                border-b
+                border-slate-100
+                bg-slate-50/50
+              "
+            >
+
+              <th
+                class="
+                  px-5
+                  py-3
+                  text-left
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-slate-400
+                "
+              >
+                Doctor
+              </th>
+
+              <th
+                class="
+                  px-3
+                  py-3
+                  text-left
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-slate-400
+                "
+              >
+                Appointments
+              </th>
+
+              <th
+                class="
+                  px-3
+                  py-3
+                  text-left
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-slate-400
+                "
+              >
+                Completed
+              </th>
+
+              <th
+                class="
+                  px-5
+                  py-3
+                  text-right
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-slate-400
+                "
+              >
+                Rating
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (
+              doctor of doctorReports;
+              track doctor.name
+            ) {
+
+              <tr
+                class="
+                  border-b
+                  border-slate-100
+                  last:border-0
+                "
+              >
+
+                <td class="px-5 py-3.5">
+
+                  <div
+                    class="
+                      flex
+                      items-center
+                      gap-2.5
+                    "
+                  >
+
+                    <div
+                      class="
+                        flex
+                        h-8
+                        w-8
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-lg
+                        bg-[#283779]/10
+                        text-[9px]
+                        font-semibold
+                        text-[#283779]
+                      "
+                    >
+                      {{ doctor.name.split(' ')[1]?.charAt(0) || 'D' }}
+                    </div>
+
+
+                    <div>
+
+                      <p
+                        class="
+                          text-[10px]
+                          font-semibold
+                          text-slate-700
+                        "
+                      >
+                        {{ doctor.name }}
+                      </p>
+
+                      <p
+                        class="
+                          mt-0.5
+                          text-[9px]
+                          text-slate-400
+                        "
+                      >
+                        {{ doctor.department }}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </td>
+
+
+                <td
+                  class="
+                    px-3
+                    py-3.5
+                    text-[10px]
+                    font-medium
+                    text-slate-600
+                  "
+                >
+                  {{ doctor.appointments }}
+                </td>
+
+
+                <td class="px-3 py-3.5">
+
+                  <span
+                    class="
+                      text-[10px]
+                      font-medium
+                      text-emerald-600
+                    "
+                  >
+                    {{ doctor.completed }}
+                  </span>
+
+                </td>
+
+
+                <td
+                  class="
+                    px-5
+                    py-3.5
+                    text-right
+                  "
+                >
+
+                  <span
+                    class="
+                      inline-flex
+                      items-center
+                      gap-1
+                      text-[10px]
+                      font-semibold
+                      text-amber-500
+                    "
+                  >
+
+                    <i class="bi bi-star-fill text-[8px]"></i>
+
+                    {{ doctor.rating }}
+
+                  </span>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- Mobile -->
+
+      <div
+        class="
+          divide-y
+          divide-slate-100
+          sm:hidden
+        "
+      >
+
+        @for (
+          doctor of doctorReports;
+          track doctor.name
+        ) {
+
+          <div class="p-4">
+
+            <div
+              class="
+                flex
+                items-center
+                justify-between
+                gap-3
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  min-w-0
+                  items-center
+                  gap-2.5
+                "
+              >
+
+                <div
+                  class="
+                    flex
+                    h-9
+                    w-9
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-[#283779]/10
+                    text-[9px]
+                    font-semibold
+                    text-[#283779]
+                  "
+                >
+                  {{ doctor.name.split(' ')[1]?.charAt(0) || 'D' }}
+                </div>
+
+
+                <div class="min-w-0">
+
+                  <p
+                    class="
+                      truncate
+                      text-[10px]
+                      font-semibold
+                      text-slate-700
+                    "
+                  >
+                    {{ doctor.name }}
+                  </p>
+
+                  <p
+                    class="
+                      mt-0.5
+                      text-[9px]
+                      text-slate-400
+                    "
+                  >
+                    {{ doctor.department }}
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <span
+                class="
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-1
+                  text-[10px]
+                  font-semibold
+                  text-amber-500
+                "
+              >
+
+                <i class="bi bi-star-fill text-[8px]"></i>
+
+                {{ doctor.rating }}
+
+              </span>
+
+            </div>
+
+
+            <div
+              class="
+                mt-3
+                flex
+                gap-5
+                text-[9px]
+              "
+            >
+
+              <span class="text-slate-400">
+
+                Appointments
+
+                <strong
+                  class="ml-1 text-slate-600"
+                >
+                  {{ doctor.appointments }}
+                </strong>
+
+              </span>
+
+
+              <span class="text-slate-400">
+
+                Completed
+
+                <strong
+                  class="ml-1 text-emerald-600"
+                >
+                  {{ doctor.completed }}
+                </strong>
+
+              </span>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- REPORT CENTER -->
+    <!-- ================================================= -->
+
+    <section
+      class="
+        overflow-hidden
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+      "
+    >
+
+      <div
+        class="
+          border-b
+          border-slate-100
+          px-4
+          py-4
+          sm:px-5
+        "
+      >
+
+        <h2
+          class="
+            text-sm
+            font-semibold
+            text-slate-800
+          "
+        >
+          Report Center
+        </h2>
+
+        <p
+          class="
+            mt-1
+            text-[10px]
+            text-slate-400
+          "
+        >
+          View or export generated reports.
+        </p>
+
+      </div>
+
+
+      <!-- Report Filter -->
+
+      <div
+        class="
+          border-b
+          border-slate-100
+          p-3
+        "
+      >
+
+        <div class="relative">
+
+          <i
+            class="
+              bi
+              bi-funnel
+              pointer-events-none
+              absolute
+              left-3
+              top-1/2
+              z-10
+              -translate-y-1/2
+              text-xs
+              text-slate-400
+            "
+          ></i>
+
+
+          <select
+            [(ngModel)]="selectedReportType"
+            class="
+              h-9
+              w-full
+              appearance-none
+              rounded-lg
+              border
+              border-slate-200
+              bg-slate-50
+              pl-9
+              pr-8
+              text-[10px]
+              font-medium
+              text-slate-600
+              outline-none
+              focus:border-[#283779]
+            "
+          >
+
+            <option>
+              All Reports
+            </option>
+
+            <option>
+              Appointments
+            </option>
+
+            <option>
+              Patients
+            </option>
+
+            <option>
+              Doctors
+            </option>
+
+            <option>
+              Departments
+            </option>
+
+          </select>
+
+
+          <i
+            class="
+              bi
+              bi-chevron-down
+              pointer-events-none
+              absolute
+              right-3
+              top-1/2
+              -translate-y-1/2
+              text-[9px]
+              text-slate-400
+            "
+          ></i>
+
+        </div>
+
+      </div>
+
+
+      <!-- Reports -->
+
+      <div class="divide-y divide-slate-100">
+
+        @for (
+          report of filteredReports;
+          track report.id
+        ) {
+
+          <div
+            class="
+              flex
+              items-center
+              gap-3
+              px-4
+              py-3.5
+              transition
+              hover:bg-slate-50/60
+              sm:px-5
+            "
+          >
+
+            <div
+              class="
+                flex
+                h-9
+                w-9
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                bg-[#283779]/10
+                text-[#283779]
+              "
+            >
+
+              <i
+                class="bi {{ report.icon }} text-xs"
+              ></i>
+
+            </div>
+
+
+            <div class="min-w-0 flex-1">
+
+              <p
+                class="
+                  truncate
+                  text-[10px]
+                  font-semibold
+                  text-slate-700
+                "
+              >
+                {{ report.title }}
+              </p>
+
+              <p
+                class="
+                  mt-0.5
+                  truncate
+                  text-[9px]
+                  text-slate-400
+                "
+              >
+                {{ report.date }}
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="downloadReport(report)"
+              class="
+                flex
+                h-8
+                w-8
+                shrink-0
+                items-center
+                justify-center
+                rounded-lg
+                text-slate-400
+                transition
+                hover:bg-[#283779]/10
+                hover:text-[#283779]
+              "
+              title="Download report"
+            >
+
+              <i class="bi bi-download text-[11px]"></i>
+
+            </button>
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- Export -->
+
+      <div
+        class="
+          border-t
+          border-slate-100
+          p-3
+        "
+      >
+
+        <div class="grid grid-cols-3 gap-2">
+
+          <button
+            type="button"
+            (click)="exportReport('PDF')"
+            class="
+              flex
+              h-8
+              items-center
+              justify-center
+              gap-1
+              rounded-lg
+              border
+              border-slate-200
+              text-[9px]
+              font-semibold
+              text-slate-500
+              transition
+              hover:border-red-200
+              hover:bg-red-50
+              hover:text-red-500
+            "
+          >
+
+            <i class="bi bi-file-earmark-pdf"></i>
+
+            PDF
+
+          </button>
+
+
+          <button
+            type="button"
+            (click)="exportReport('CSV')"
+            class="
+              flex
+              h-8
+              items-center
+              justify-center
+              gap-1
+              rounded-lg
+              border
+              border-slate-200
+              text-[9px]
+              font-semibold
+              text-slate-500
+              transition
+              hover:border-emerald-200
+              hover:bg-emerald-50
+              hover:text-emerald-600
+            "
+          >
+
+            <i class="bi bi-filetype-csv"></i>
+
+            CSV
+
+          </button>
+
+
+          <button
+            type="button"
+            (click)="exportReport('Excel')"
+            class="
+              flex
+              h-8
+              items-center
+              justify-center
+              gap-1
+              rounded-lg
+              border
+              border-slate-200
+              text-[9px]
+              font-semibold
+              text-slate-500
+              transition
+              hover:border-blue-200
+              hover:bg-blue-50
+              hover:text-blue-600
+            "
+          >
+
+            <i class="bi bi-file-earmark-spreadsheet"></i>
+
+            Excel
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- REPORT FOOTER -->
+  <!-- ===================================================== -->
+
+  <div
+    class="
+      flex
+      flex-col
+      gap-3
+      rounded-2xl
+      border
+      border-slate-200
+      bg-white
+      p-4
+      sm:flex-row
+      sm:items-center
+      sm:justify-between
+      sm:p-5
+    "
+  >
+
+    <div
+      class="
+        flex
+        items-start
+        gap-3
+      "
+    >
+
+      <span
+        class="
+          flex
+          h-9
+          w-9
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          bg-[#283779]/10
+          text-[#283779]
+        "
+      >
+        <i class="bi bi-info-circle text-xs"></i>
+      </span>
+
+
+      <div>
+
+        <p
+          class="
+            text-[11px]
+            font-semibold
+            text-slate-700
+          "
+        >
+          Report period
+        </p>
+
+        <p
+          class="
+            mt-0.5
+            text-[10px]
+            leading-5
+            text-slate-400
+          "
+        >
+          Currently viewing analytics for
+          <span class="font-medium text-slate-500">
+            {{ selectedPeriod }}
+          </span>.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      (click)="generateReport()"
+      class="
+        inline-flex
+        h-9
+        items-center
+        justify-center
+        gap-2
+        rounded-xl
+        border
+        border-[#283779]/20
+        px-4
+        text-[10px]
+        font-semibold
+        text-[#283779]
+        transition
+        hover:bg-[#283779]/5
+      "
+    >
+
+      <i class="bi bi-arrow-repeat"></i>
+
+      Refresh Report
+
+    </button>
+
+  </div>
+
+</div>

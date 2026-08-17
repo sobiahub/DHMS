@@ -1,0 +1,264 @@
+<header
+  class="sticky top-0 z-30 flex h-[76px] shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6 lg:px-7"
+>
+
+  <!-- ===================================================== -->
+  <!-- LEFT -->
+  <!-- ===================================================== -->
+
+  <div class="flex items-center">
+
+    <!-- Mobile Sidebar -->
+
+    <button
+      type="button"
+      aria-label="Open sidebar"
+      class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:bg-slate-50 hover:text-[#283779] lg:hidden"
+      (click)="openMenu()"
+    >
+      <i class="bi bi-list text-lg"></i>
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- RIGHT -->
+  <!-- ===================================================== -->
+
+  <div class="flex items-center gap-1.5 sm:gap-2.5">
+
+    <!-- ================================================= -->
+    <!-- SEARCH -->
+    <!-- ================================================= -->
+
+    <button
+      type="button"
+      aria-label="Search"
+      class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-50 hover:text-[#283779]"
+    >
+      <i class="bi bi-search text-[16px]"></i>
+    </button>
+
+
+    <!-- ================================================= -->
+    <!-- NOTIFICATIONS -->
+    <!-- ================================================= -->
+
+    <button
+      routerLink="/patient/notifications"
+      type="button"
+      aria-label="Notifications"
+      class="relative flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-50 hover:text-[#283779]"
+    >
+
+      <i class="bi bi-bell text-[17px]"></i>
+
+      <!-- Notification indicator -->
+
+      <span
+        class="absolute right-[7px] top-[6px] h-1.5 w-1.5 rounded-full bg-red-500 ring-2 ring-white"
+      ></span>
+
+    </button>
+
+
+    <!-- Divider -->
+
+    <div
+      class="mx-1 h-7 w-px bg-slate-200"
+    ></div>
+
+
+    <!-- ================================================= -->
+    <!-- PATIENT PROFILE -->
+    <!-- ================================================= -->
+
+    <div class="relative">
+
+      <button
+        type="button"
+        class="flex items-center gap-2 rounded-lg px-1.5 py-1 transition hover:bg-slate-50 sm:gap-2.5 sm:px-2"
+        (click)="toggleProfile()"
+      >
+
+        <!-- Avatar -->
+
+        <div
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#283779] text-sm font-semibold text-white shadow-sm"
+        >
+          P
+        </div>
+
+
+        <!-- Patient Info -->
+
+        <div class="hidden text-left sm:block">
+
+          <p
+            class="text-[12px] font-semibold leading-tight text-slate-800"
+          >
+            Patient
+          </p>
+
+          <p
+            class="mt-0.5 text-[9px] leading-tight text-slate-400"
+          >
+            Patient Account
+          </p>
+
+        </div>
+
+
+        <!-- Chevron -->
+
+        <i
+          class="bi bi-chevron-down hidden text-[9px] text-slate-400 transition-transform sm:block"
+          [class.rotate-180]="profileOpen"
+        ></i>
+
+      </button>
+
+
+      <!-- ================================================= -->
+      <!-- PROFILE DROPDOWN -->
+      <!-- ================================================= -->
+
+      @if (profileOpen) {
+
+        <div
+          class="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-900/10"
+        >
+
+          <!-- Patient Profile -->
+
+          <div
+            class="border-b border-slate-100 px-4 py-3.5"
+          >
+
+            <div class="flex items-center gap-3">
+
+              <!-- Profile Icon -->
+
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#283779]/10 text-[#283779]"
+              >
+                <i class="bi bi-person-heart text-base"></i>
+              </div>
+
+
+              <!-- Patient Info -->
+
+              <div class="min-w-0">
+
+                <p
+                  class="truncate text-xs font-semibold text-slate-800"
+                >
+                  Patient
+                </p>
+
+                <p
+                  class="mt-0.5 truncate text-[10px] text-slate-400"
+                >
+                  Patient Account
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- MENU -->
+          <!-- ================================================= -->
+
+          <div class="p-1.5">
+
+            <!-- My Profile -->
+
+            <button
+              routerLink="/patient/profile"
+              type="button"
+              class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs text-slate-600 transition hover:bg-slate-50 hover:text-[#283779]"
+            >
+
+              <i class="bi bi-person text-sm"></i>
+
+              <span>
+                My Profile
+              </span>
+
+            </button>
+
+
+            <!-- My Appointments -->
+
+            <button
+              routerLink="/patient/appointments"
+              type="button"
+              class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs text-slate-600 transition hover:bg-slate-50 hover:text-[#283779]"
+            >
+
+              <i class="bi bi-calendar2-check text-sm"></i>
+
+              <span>
+                My Appointments
+              </span>
+
+            </button>
+
+
+            <!-- Medical Records -->
+
+            <button
+              routerLink="/patient/medical-records"
+              type="button"
+              class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs text-slate-600 transition hover:bg-slate-50 hover:text-[#283779]"
+            >
+
+              <i class="bi bi-file-earmark-medical text-sm"></i>
+
+              <span>
+                Medical Records
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- LOGOUT -->
+          <!-- ================================================= -->
+
+          <div
+            class="border-t border-slate-100 p-1.5"
+          >
+
+            <button
+              type="button"
+              class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs font-medium text-red-500 transition hover:bg-red-50"
+              (click)="logout()"
+            >
+
+              <i class="bi bi-box-arrow-right text-sm"></i>
+
+              <span>
+                Logout
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</header>

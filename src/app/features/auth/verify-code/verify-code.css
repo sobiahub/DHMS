@@ -1,0 +1,285 @@
+:host {
+  display: block;
+}
+
+
+/* =======================================================
+   FORM INPUT
+======================================================= */
+
+.form-input {
+  display: block;
+
+  width: 100%;
+  height: 44px;
+
+  padding: 0 13px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #1e293b;
+
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+
+.form-input:hover {
+  border-color: #cbd5e1;
+}
+
+
+.form-input:focus {
+  border-color: rgb(40 55 121 / 40%);
+
+  box-shadow:
+    0 0 0 4px rgb(40 55 121 / 5%);
+}
+
+
+/* =======================================================
+   INPUT ERROR
+======================================================= */
+
+.form-input-error {
+  border-color: #fca5a5 !important;
+}
+
+
+.form-input-error:focus {
+  border-color: #f87171 !important;
+
+  box-shadow:
+    0 0 0 4px rgb(248 113 113 / 7%);
+}
+
+
+/* =======================================================
+   FIELD ERROR
+======================================================= */
+
+.field-error {
+  margin-top: 5px;
+
+  color: #ef4444;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+
+/* =======================================================
+   PRIMARY BUTTON
+======================================================= */
+
+.primary-button {
+  display: flex;
+
+  width: 100%;
+  height: 44px;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 20px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #283779;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+
+.primary-button:hover:not(:disabled) {
+  background: #202d61;
+
+  box-shadow:
+    0 5px 14px rgb(40 55 121 / 14%);
+}
+
+
+.primary-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+
+.primary-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.5;
+}
+
+
+/* =======================================================
+   STEP DOT
+======================================================= */
+
+.step-dot {
+  display: flex;
+
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 28px;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+
+  background: #ffffff;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+
+/* Current step */
+
+.step-dot-active {
+  border-color: #283779;
+
+  background: #283779;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgb(40 55 121 / 7%);
+}
+
+
+/* Completed step */
+
+.step-dot-complete {
+  border-color: #283779;
+
+  background: #283779;
+
+  color: #ffffff;
+}
+
+
+/* =======================================================
+   STEP LINE
+======================================================= */
+
+.step-line {
+  height: 1px;
+
+  flex: 1;
+
+  margin: 0 8px;
+
+  background: #e2e8f0;
+
+  transition:
+    background-color 180ms ease;
+}
+
+
+.step-line-active {
+  background: #283779;
+}
+
+
+/* =======================================================
+   VERIFICATION INPUT
+======================================================= */
+
+.verification-input {
+  height: 50px;
+
+  text-align: center;
+
+  font-size: 20px !important;
+
+  font-weight: 700;
+
+  letter-spacing: 0.38em;
+
+  padding-left: 20px !important;
+}
+
+
+/* =======================================================
+   MOBILE
+======================================================= */
+
+@media (max-width: 640px) {
+
+  .form-input {
+    height: 44px;
+  }
+
+  .verification-input {
+    height: 50px;
+  }
+
+}
+
+
+/* =======================================================
+   SMALL MOBILE
+======================================================= */
+
+@media (max-width: 380px) {
+
+  .step-line {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .step-dot {
+    width: 26px;
+    height: 26px;
+
+    flex-basis: 26px;
+  }
+
+  .verification-input {
+    font-size: 18px !important;
+
+    letter-spacing: 0.3em;
+
+    padding-left: 15px !important;
+  }
+
+}

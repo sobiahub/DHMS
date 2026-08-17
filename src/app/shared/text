@@ -1,0 +1,374 @@
+src/
+└── app/
+    │
+    ├── core/
+    │   ├── guards/
+    │   │   ├── auth.guard.ts
+    │   │   ├── admin.guard.ts
+    │   │   ├── doctor.guard.ts
+    │   │   └── patient.guard.ts
+    │   │
+    │   ├── interceptors/
+    │   │   └── auth.interceptor.ts
+    │   │
+    │   ├── services/
+    │   │   ├── auth.service.ts
+    │   │   ├── api.service.ts
+    │   │   └── notification.service.ts
+    │   │
+    │   └── models/
+    │       ├── user.model.ts
+    │       ├── doctor.model.ts
+    │       ├── patient.model.ts
+    │       └── appointment.model.ts
+    │
+    ├── layouts/
+    │   ├── public-layout/
+    │   ├── patient-layout/
+    │   ├── doctor-layout/
+    │   └── admin-layout/
+    │
+    ├── shared/
+    │   └── components/
+    │       ├── sidebar/
+    │       ├── doctor-card/
+    │       ├── appointment-card/
+    │       ├── stat-card/
+    │       ├── data-table/
+    │       ├── pagination/
+    │       ├── empty-state/
+    │       ├── modal/
+    │       └── toast/
+    │
+    ├── features/
+    │
+    │   ├── landing/
+    │   │   ├── landing-page/
+    │   │   ├── sections/
+    │   │   │   ├── hero/
+    │   │   │   ├── services/
+    │   │   │   ├── doctors/
+    │   │   │   ├── departments/
+    │   │   │   ├── how-it-works/
+    │   │   │   ├── testimonials/
+    │   │   │   └── cta/
+                navbar/
+    │       ├── footer/
+    │   │   └── landing.routes.ts
+    │   │
+    │   ├── doctors/
+    │   │   ├── doctor-list/
+    │   │   ├── doctor-details/
+    │   │   └── doctors.routes.ts
+    │   │
+    │   ├── departments/
+    │   │   └── department-list/
+    │   │
+    │   ├── services/
+    │   │   └── service-list/
+    │   │
+    │   ├── appointments/
+    │   │   ├── book-appointment/
+    │   │   ├── appointment-details/
+    │   │   └── appointment-list/
+    │   │
+    │   ├── auth/
+    │   │   ├── login/
+    │   │   ├── register/
+    │   │   ├── forgot-password/
+    │   │   └── reset-password/
+    │   │
+    │   ├── patient/
+    │   │   ├── dashboard/
+    │   │   ├── profile/
+    │   │   ├── appointments/
+    │   │   ├── medical-records/
+    │   │   └── notifications/
+    │   │
+    │   ├── doctor/
+    │   │   ├── dashboard/
+    │   │   ├── appointments/
+    │   │   ├── patients/
+    │   │   ├── schedule/
+    │   │   └── profile/
+    │   │
+    │   └── admin/
+    │       ├── dashboard/
+    │       ├── doctors/
+    │       ├── patients/
+    │       ├── appointments/
+    │       ├── departments/
+    │       ├── users/
+    │       └── reports/
+    │
+    ├── assets/
+    │   ├── images/
+    │   │   ├── landing-page/
+    │   │   ├── doctors/
+    │   │   └── departments/
+    │   │
+    │   └── icons/
+    │
+    ├── app.config.ts
+    ├── app.routes.ts
+    ├── app.html
+    └── app.css
+
+
+
+
+Landing page structure
+
+    NAVBAR
+│
+├── Logo
+├── Home
+├── Doctors
+├── Departments
+├── Services
+├── About
+├── Contact
+├── Login
+└── Book Appointment
+│
+▼
+HERO
+│
+├── "Your Health, Our Priority"
+├── Supporting description
+├── [Find a Doctor]
+├── [Book Appointment]
+└── Doctor / healthcare visual
+│
+▼
+QUICK ACCESS
+│
+├── Find a Doctor
+├── Book Appointment
+├── Emergency Support
+└── Medical Records
+│
+▼
+SERVICES
+│
+├── Doctor Consultation
+├── Appointment Management
+├── Medical Records
+├── Prescriptions
+└── Healthcare Support
+│
+▼
+ABOUT / WHY US
+│
+├── Healthcare management
+├── Secure records
+├── Easy appointments
+└── Better communication
+│
+▼
+STATISTICS
+│
+├── Doctors
+├── Patients
+├── Appointments
+└── Departments
+│
+▼
+FEATURED DOCTORS
+│
+├── Doctor card
+├── Specialty
+├── Availability
+└── Book appointment
+│
+▼
+HOW IT WORKS
+│
+1. Find Doctor
+2. Select Schedule
+3. Book Appointment
+4. Get Confirmation
+│
+▼
+APPOINTMENT CTA
+│
+"Need to see a doctor?"
+│
+[Book an Appointment]
+│
+▼
+TESTIMONIALS
+│
+▼
+FAQ
+│
+▼
+FOOTER
+
+
+
+
+
+
+
+┌─────────────────────────────────────────────────────────┐
+│                     NAVBAR                              │
+│ Logo | Home | Doctors | Departments | Services | About │
+│                         Login | Book Appointment        │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                     HERO SECTION                        │
+│                                                         │
+│  Your Health,              [ Healthcare Image ]         │
+│  Our Priority.                                         │
+│                                                         │
+│  Modern healthcare management made simple.              │
+│                                                         │
+│  [ Find a Doctor ]  [ Book Appointment ]               │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                    QUICK ACCESS                         │
+│                                                         │
+│  Find a Doctor   Book Appointment   Medical Records    │
+│  Emergency Care  Healthcare Support                    │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                      SERVICES                           │
+│                                                         │
+│  Doctor Consultation    Appointment Management         │
+│  Medical Records        Prescriptions                  │
+│  Healthcare Support     Patient Care                   │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                   ABOUT / WHY US                        │
+│                                                         │
+│             [ Healthcare Image ]                        │
+│                                                         │
+│  Simplifying Healthcare Through Technology              │
+│                                                         │
+│  ✓ Easy appointment booking                             │
+│  ✓ Secure medical records                               │
+│  ✓ Trusted healthcare professionals                     │
+│  ✓ Better patient communication                         │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                     STATISTICS                          │
+│                                                         │
+│     1,200+          80+          15,000+       12       │
+│     Patients       Doctors      Appointments  Depts     │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                  FEATURED DOCTORS                       │
+│                                                         │
+│   [ Doctor ]      [ Doctor ]      [ Doctor ]            │
+│   Dr. Ahmed       Dr. Sara        Dr. Ali               │
+│   Cardiologist    Neurologist     Dentist               │
+│                                                         │
+│              [ View All Doctors ]                       │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                   HOW IT WORKS                          │
+│                                                         │
+│       01              02              03              04 │
+│    Find Doctor → Select Time → Book → Confirmation     │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                 APPOINTMENT CTA                         │
+│                                                         │
+│           Need to see a doctor?                         │
+│     Book your appointment in just a few clicks.         │
+│                                                         │
+│              [ Book Appointment ]                       │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                    TESTIMONIALS                         │
+│                                                         │
+│     "Very easy to book my appointment..."              │
+│                                                         │
+│     "I can manage my records easily..."                │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                        FAQ                              │
+│                                                         │
+│  How do I book an appointment?                 +        │
+│  Can I cancel my appointment?                  +        │
+│  How are my medical records protected?         +        │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+                         ↓
+
+┌─────────────────────────────────────────────────────────┐
+│                       FOOTER                            │
+│                                                         │
+│  MediCare        Quick Links       Services             │
+│  About us        Doctors           Contact              │
+│  Healthcare      Appointments      Privacy              │
+│                                                         │
+│                  © 2026 MediCare                        │
+└─────────────────────────────────────────────────────────┘
+
+
+
+
+
+
+
+
+
+
+colors plate:
+| Purpose        | Color        | Hex       |
+| -------------- | ------------ | --------- |
+| Primary        | Deep Teal    | `#0F766E` |
+| Primary Dark   | Dark Teal    | `#115E59` |
+| Accent         | Medical Blue | `#2563EB` |
+| Soft Accent    | Pale Blue    | `#EFF6FF` |
+| Soft Teal      | Mint         | `#ECFDF5` |
+| Main Text      | Slate        | `#0F172A` |
+| Secondary Text | Slate Gray   | `#475569` |
+| Muted          | Cool Gray    | `#64748B` |
+| Background     | Off White    | `#F8FAFC` |
+| Surface        | White        | `#FFFFFF` |
+| Border         | Light Slate  | `#E2E8F0` |
+| Success        | Green        | `#16A34A` |
+| Warning        | Amber        | `#D97706` |
+| Danger         | Red          | `#DC2626` |
