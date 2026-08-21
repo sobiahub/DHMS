@@ -1,4 +1,5 @@
-# Healthcare Management System
+# Medicare_AI
+  Healthcare Management System
 
 A modern and responsive Healthcare Management System built with Angular and Tailwind CSS.
 
