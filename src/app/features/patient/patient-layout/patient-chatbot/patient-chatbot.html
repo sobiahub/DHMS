@@ -1,0 +1,468 @@
+<!-- CHATBOT -->
+<div class="chatbot-wrapper">
+
+  <!-- CHAT WINDOW -->
+
+
+  <div
+    *ngIf="isOpen"
+    class="chat-window"
+  >
+
+    <!-- HEADER -->
+
+<div class="chat-header">
+
+  <div class="chat-header-left">
+
+    <!-- Bot Avatar -->
+    <div class="bot-avatar">
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        class="h-5 w-5"
+      >
+        <rect
+          x="5"
+          y="7"
+          width="14"
+          height="11"
+          rx="3"
+        />
+
+        <path d="M9 11h.01M15 11h.01" />
+        <path d="M9 15h6" />
+        <path d="M12 3v4" />
+
+      </svg>
+
+      <span class="avatar-online"></span>
+
+    </div>
+
+
+    <!-- Assistant Info -->
+    <div>
+
+      <div class="flex items-center gap-2">
+
+        <h3 class="assistant-title">
+          MediCare Assistant
+        </h3>
+
+        <span class="online-status">
+          <span class="online-dot"></span>
+          Online
+        </span>
+
+      </div>
+
+      <p class="assistant-subtitle">
+        How can we help you today?
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Close Button -->
+  <button
+    type="button"
+    (click)="toggleChat()"
+    class="close-button"
+    aria-label="Close chatbot"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      class="h-5 w-5"
+    >
+      <path d="M6 6l12 12" />
+      <path d="M18 6L6 18" />
+    </svg>
+
+  </button>
+
+</div>
+
+
+    <!-- ===================================================== -->
+    <!-- CHAT BODY -->
+    <!-- ===================================================== -->
+
+    <div
+      class="chat-body"
+    >
+
+      <!-- Welcome / Quick Actions -->
+      <div
+        *ngIf="messages.length === 1"
+        class="mb-4"
+      >
+
+        <p class="mb-3 px-1 text-[11px] font-medium text-gray-400">
+          QUICK ACTIONS
+        </p>
+
+        <div class="grid grid-cols-2 gap-2">
+
+          <button
+            *ngFor="let action of quickActions"
+            type="button"
+            (click)="sendMessage(action.message)"
+            class="quick-action"
+          >
+
+            <!-- Calendar -->
+            <svg
+              *ngIf="action.icon === 'calendar'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <rect x="3" y="5" width="18" height="16" rx="3" />
+              <path d="M16 3v4M8 3v4M3 10h18" />
+              <path d="M8 14h2M14 14h2M8 17h2" />
+            </svg>
+
+            <!-- Clipboard -->
+            <svg
+              *ngIf="action.icon === 'clipboard'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <rect x="5" y="4" width="14" height="17" rx="2" />
+              <path d="M9 4V2h6v2" />
+              <path d="M8 10h8M8 14h6" />
+            </svg>
+
+            <!-- Doctor -->
+            <svg
+              *ngIf="action.icon === 'doctor'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <circle cx="12" cy="7" r="3" />
+              <path d="M5 21a7 7 0 0114 0" />
+              <path d="M17 11h4M19 9v4" />
+            </svg>
+
+            <!-- Building -->
+            <svg
+              *ngIf="action.icon === 'building'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <path d="M4 21V6l8-3 8 3v15" />
+              <path d="M8 9h2M14 9h2M8 13h2M14 13h2" />
+              <path d="M10 21v-4h4v4" />
+            </svg>
+
+            <!-- Pill -->
+            <svg
+              *ngIf="action.icon === 'pill'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <path
+                d="M8 20a5 5 0 01-3.5-8.5l7-7a5 5 0 117 7l-7 7A5 5 0 018 20z"
+              />
+              <path d="M7 10l7 7" />
+            </svg>
+
+            <!-- Support -->
+            <svg
+              *ngIf="action.icon === 'support'"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="quick-icon"
+            >
+              <path d="M4 13a8 8 0 0116 0" />
+              <path d="M4 13v4a2 2 0 002 2h2v-6H4z" />
+              <path d="M20 13v4a2 2 0 01-2 2h-2v-6h4z" />
+              <path d="M16 21h-4" />
+            </svg>
+
+            <span>
+              {{ action.label }}
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================== -->
+      <!-- MESSAGES -->
+      <!-- =================================================== -->
+
+      <div class="space-y-4">
+
+        <div
+          *ngFor="let message of messages"
+          class="message-row"
+          [class.patient-row]="message.sender === 'patient'"
+        >
+
+          <!-- Bot Avatar -->
+          <div
+            *ngIf="message.sender === 'bot'"
+            class="message-avatar"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="h-4 w-4"
+            >
+              <rect
+                x="5"
+                y="7"
+                width="14"
+                height="11"
+                rx="3"
+              />
+              <path d="M9 11h.01M15 11h.01" />
+              <path d="M9 15h6" />
+            </svg>
+          </div>
+
+
+          <!-- Message Content -->
+          <div
+            class="max-w-[78%]"
+            [class.patient-message]="message.sender === 'patient'"
+          >
+
+            <div
+              class="message-bubble"
+              [class.bot-message]="message.sender === 'bot'"
+              [class.user-message]="message.sender === 'patient'"
+            >
+              {{ message.message }}
+            </div>
+
+            <div
+              class="message-time"
+              [class.text-right]="message.sender === 'patient'"
+            >
+              {{ message.time }}
+
+              <span
+                *ngIf="message.sender === 'patient'"
+                class="ml-1"
+              >
+                ✓✓
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- TYPING INDICATOR -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="isTyping"
+          class="message-row"
+        >
+
+          <div class="message-avatar">
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              class="h-4 w-4"
+            >
+              <rect
+                x="5"
+                y="7"
+                width="14"
+                height="11"
+                rx="3"
+              />
+              <path d="M9 11h.01M15 11h.01" />
+            </svg>
+
+          </div>
+
+          <div class="typing-bubble">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- INPUT AREA -->
+    <!-- ===================================================== -->
+
+    <div class="chat-input-area">
+
+      <div class="input-container">
+
+        <input
+          type="text"
+          [(ngModel)]="messageText"
+          (keydown.enter)="sendMessage()"
+          placeholder="Type your message..."
+          class="chat-input"
+        />
+
+        <!-- Attachment -->
+        <button
+          type="button"
+          class="input-action"
+          aria-label="Attach file"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            class="h-5 w-5"
+          >
+            <path
+              d="M21 11.5l-8.5 8.5a6 6 0 01-8.5-8.5l9-9a4 4 0 015.7 5.7l-9 9a2 2 0 01-2.8-2.8l8.5-8.5"
+            />
+          </svg>
+
+        </button>
+
+
+        <!-- Send -->
+        <button
+          type="button"
+          (click)="sendMessage()"
+          [disabled]="!messageText.trim() || isTyping"
+          class="send-button"
+          aria-label="Send message"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            class="h-5 w-5"
+          >
+            <path d="M22 2L11 13" />
+            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Privacy -->
+      <div class="privacy-text">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          class="h-3 w-3"
+        >
+          <rect
+            x="5"
+            y="10"
+            width="14"
+            height="10"
+            rx="2"
+          />
+          <path d="M8 10V7a4 4 0 018 0v3" />
+        </svg>
+
+        Your conversations are secure and private.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ======================================================= -->
+  <!-- FLOATING CHAT BUTTON -->
+  <!-- ======================================================= -->
+
+  <button
+    *ngIf="!isOpen"
+    type="button"
+    (click)="toggleChat()"
+    class="floating-button"
+    aria-label="Open MediCare Assistant"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      class="h-7 w-7"
+    >
+      <rect
+        x="4"
+        y="6"
+        width="16"
+        height="13"
+        rx="4"
+      />
+
+      <path d="M9 11h.01M15 11h.01" />
+
+      <path d="M9 15h6" />
+
+      <path d="M12 3v3" />
+
+    </svg>
+
+    <!-- Online -->
+    <span class="floating-online"></span>
+
+  </button>
+
+</div>
